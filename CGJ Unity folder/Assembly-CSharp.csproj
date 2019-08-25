@@ -63,18 +63,19 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Ennemy.cs" />
     <Compile Include="Assets\Scripts\Main.cs" />
+    <Compile Include="Assets\Scripts\Player_Animation.cs" />
     <Compile Include="Assets\Scripts\Player_Mouvement.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>/Users/stephanebosso/Desktop/CGJ/CGJ Unity folder/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>/Users/stephanebosso/Downloads/CGJ/CGJ Unity folder/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>/Users/stephanebosso/Desktop/CGJ/CGJ Unity folder/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>/Users/stephanebosso/Downloads/CGJ/CGJ Unity folder/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>/Users/stephanebosso/Desktop/CGJ/CGJ Unity folder/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>/Users/stephanebosso/Downloads/CGJ/CGJ Unity folder/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>/Users/stephanebosso/Desktop/CGJ/CGJ Unity folder/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>/Users/stephanebosso/Downloads/CGJ/CGJ Unity folder/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

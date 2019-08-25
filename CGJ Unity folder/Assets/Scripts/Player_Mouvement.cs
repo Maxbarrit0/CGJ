@@ -12,13 +12,41 @@ public class Player_Mouvement : MonoBehaviour
         Body = this.GetComponent<Rigidbody2D>();
     }
 
+    private void Update()
+    {
+        Mouvement();
+        Animation();
+    }
+
+    //this do all the player animation
+
+    #region Animation
+
+    void Animation()
+    {
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            this.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            this.transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+    }
+
+    #endregion
+
+    //this do the player mouvement
+
+    #region Mouvement  
+
     //The X and Y velocity that rigidbody will have every frame
     public float X_Velocity, Y_Velocity;
 
     //The max speed that x and y velocity cannot reach. Also determine the acceleration
     public float MaxSpeed;
 
-    private void Update()
+    private void Mouvement()
     {
 
         //Check if the user have pressed the touch Z 
@@ -172,4 +200,6 @@ public class Player_Mouvement : MonoBehaviour
             }
         }
     }
+
+    #endregion
 }

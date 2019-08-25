@@ -11,6 +11,12 @@ public class Main : MonoBehaviour
 
     //The gameobject that will be spawn
     public GameObject Monstre;
+    Ennemy Script_Ennemy;
+
+    private void Start()
+    {
+        Script_Ennemy = Monstre.GetComponent<Ennemy>();
+    }
 
     private void Update()
     {
@@ -26,11 +32,15 @@ public class Main : MonoBehaviour
             //if r = 1
             if (r == 1)
             {
+                Script_Ennemy.Direction = "D";
+
                 //do the monster at that random pos
                 Monstre.transform.position = new Vector3(-14, Random.Range(-6.5f, 6.5f + 1), 0);
             }
             else if (r == 2)
             {
+                Script_Ennemy.Direction = "G";
+
                 //do the monster at that random pos
                 Monstre.transform.position = new Vector3(14, Random.Range(-6.5f, 6.5f + 1), 0);
             }
