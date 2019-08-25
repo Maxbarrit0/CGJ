@@ -61,6 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Ennemy.cs" />
+    <Compile Include="Assets\Scripts\Main.cs" />
     <Compile Include="Assets\Scripts\Player_Mouvement.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/stephanebosso/Desktop/CGJ/CGJ Unity folder/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

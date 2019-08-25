@@ -23,7 +23,7 @@ public class Player_Mouvement : MonoBehaviour
 
         //Check if the user have pressed the touch Z 
 
-        if (Input.GetKey(KeyCode.Z))
+        if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.UpArrow))
         {
             if (Y_Velocity < 0)
             {
@@ -38,7 +38,7 @@ public class Player_Mouvement : MonoBehaviour
                 Y_Velocity += MaxSpeed * Time.deltaTime;
             }
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             if (Y_Velocity > 0)
             {
@@ -72,7 +72,7 @@ public class Player_Mouvement : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             if (X_Velocity < 0)
             {
@@ -87,7 +87,7 @@ public class Player_Mouvement : MonoBehaviour
                 X_Velocity += MaxSpeed * Time.deltaTime;
             }
         }
-        else if (Input.GetKey(KeyCode.Q))
+        else if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))
         {
             if (X_Velocity > 0)
             {
