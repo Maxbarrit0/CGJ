@@ -61,11 +61,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Boss.cs" />
     <Compile Include="Assets\Scripts\Camera.cs" />
     <Compile Include="Assets\Scripts\Ennemy.cs" />
     <Compile Include="Assets\Scripts\Main.cs" />
     <Compile Include="Assets\Scripts\Player_Mouvement.cs" />
     <Compile Include="Assets\Scripts\Player_Sword.cs" />
+    <None Include="Assets\Font\NotoSans - License.txt" />
+    <None Include="Assets\Font\Oswald Bold - OFL.txt" />
+    <None Include="Assets\Font\Anton OFL.txt" />
+    <None Include="Assets\Font\LiberationSans - OFL.txt" />
+    <None Include="Assets\Font\Bangers - OFL.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/stephanebosso/Desktop/CGJ/CGJ Unity folder/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
