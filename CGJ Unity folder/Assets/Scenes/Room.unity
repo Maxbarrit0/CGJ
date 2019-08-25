@@ -347,7 +347,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   X_Velocity: 0
   Y_Velocity: 0
-  MaxSpeed: 15
+  MaxSpeed: 10
+  Acceleration: 2
+  Decceleration: 3
 --- !u!61 &262155097
 BoxCollider2D:
   m_ObjectHideFlags: 0

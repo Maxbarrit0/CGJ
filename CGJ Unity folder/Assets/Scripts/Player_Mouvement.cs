@@ -44,7 +44,8 @@ public class Player_Mouvement : MonoBehaviour
     public float X_Velocity, Y_Velocity;
 
     //The max speed that x and y velocity cannot reach. Also determine the acceleration
-    public float MaxSpeed;
+    public float MaxSpeed, Acceleration;
+    public float Decceleration;
 
     private void Mouvement()
     {
@@ -63,7 +64,7 @@ public class Player_Mouvement : MonoBehaviour
             {
                 // if Y velocity is > 0 then it will accelerate normally
 
-                Y_Velocity += MaxSpeed * Time.deltaTime;
+                Y_Velocity += MaxSpeed * Acceleration * Time.deltaTime;
             }
         }
         else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
@@ -78,7 +79,7 @@ public class Player_Mouvement : MonoBehaviour
             {
                 // if Y velocity is > 0 then it will deccelerate normally
 
-                Y_Velocity -= MaxSpeed * Time.deltaTime;
+                Y_Velocity -= MaxSpeed * Acceleration * Time.deltaTime;
             }
         }
         else
@@ -91,11 +92,11 @@ public class Player_Mouvement : MonoBehaviour
             {
                 if (Y_Velocity > 0.1f) // If Y Velocity > 0.1f Velocity deccelerate for approching 0 then stop
                 {
-                    Y_Velocity -= MaxSpeed * 1.5f * Time.deltaTime;
+                    Y_Velocity -= MaxSpeed * Decceleration * Time.deltaTime;
                 }
                 else // If Y Velocity < 0.1f Velocity accelerate for approching 0 then stop
                 {
-                    Y_Velocity += MaxSpeed * 1.5f * Time.deltaTime;
+                    Y_Velocity += MaxSpeed * Decceleration * Time.deltaTime;
                 }
             }
         }
@@ -112,7 +113,7 @@ public class Player_Mouvement : MonoBehaviour
             {
                 // if X velocity is > 0 then it will accelerate normally
 
-                X_Velocity += MaxSpeed * Time.deltaTime;
+                X_Velocity += MaxSpeed * Acceleration * Time.deltaTime;
             }
         }
         else if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))
@@ -127,7 +128,7 @@ public class Player_Mouvement : MonoBehaviour
             {
                 // if X velocity is < 0 then it will deccelerate normally
 
-                X_Velocity -= MaxSpeed * Time.deltaTime;
+                X_Velocity -= MaxSpeed * Acceleration * Time.deltaTime;
             }
         }
         else
@@ -142,13 +143,13 @@ public class Player_Mouvement : MonoBehaviour
                 {
                     // If X Velocity > 0.1f Velocity deccelerate for approching 0 then stop
 
-                    X_Velocity -= MaxSpeed * 1.5f * Time.deltaTime;
+                    X_Velocity -= MaxSpeed * Decceleration * Time.deltaTime;
                 }
                 else
                 {
                     // If X Velocity < 0.1f Velocity deccelerate for approching 0 then stop
 
-                    X_Velocity += MaxSpeed * 1.5f * Time.deltaTime;
+                    X_Velocity += MaxSpeed * Decceleration * Time.deltaTime;
                 }
             }
         }
