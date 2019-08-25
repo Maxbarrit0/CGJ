@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EGS : MonoBehaviour
+{
+    // Start is called before the first frame update
+
+    private Transform bar;
+    private void Start()
+    {
+        Transform bar = transform.Find("Bar");
+    }
+
+     public void Setsize(float sizeNormalized)
+    {
+        bar.localScale = new Vector3(sizeNormalized, 1f);
+    }
+}
+// Name the Healthbar "bar"
