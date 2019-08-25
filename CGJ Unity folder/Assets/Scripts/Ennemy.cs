@@ -51,5 +51,9 @@ public class Ennemy : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        else if (collision.gameObject.tag == "Sword")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

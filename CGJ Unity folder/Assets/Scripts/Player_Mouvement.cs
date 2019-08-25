@@ -47,6 +47,9 @@ public class Player_Mouvement : MonoBehaviour
     public float MaxSpeed, Acceleration;
     public float Decceleration;
 
+    public static string CurrentDirection;
+    public bool X_Plus, X_Moin, Y_Plus, Y_Moins;
+
     private void Mouvement()
     {
 
@@ -66,6 +69,8 @@ public class Player_Mouvement : MonoBehaviour
 
                 Y_Velocity += MaxSpeed * Acceleration * Time.deltaTime;
             }
+            Y_Plus = true;
+            Y_Moins = false;
         }
         else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
@@ -81,6 +86,8 @@ public class Player_Mouvement : MonoBehaviour
 
                 Y_Velocity -= MaxSpeed * Acceleration * Time.deltaTime;
             }
+            Y_Moins = true;
+            Y_Plus = false;
         }
         else
         {
@@ -99,6 +106,8 @@ public class Player_Mouvement : MonoBehaviour
                     Y_Velocity += MaxSpeed * Decceleration * Time.deltaTime;
                 }
             }
+            Y_Moins = false;
+            Y_Plus = false;
         }
 
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
@@ -115,6 +124,9 @@ public class Player_Mouvement : MonoBehaviour
 
                 X_Velocity += MaxSpeed * Acceleration * Time.deltaTime;
             }
+            X_Plus = true;
+            X_Moin = false;
+
         }
         else if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))
         {
@@ -130,6 +142,8 @@ public class Player_Mouvement : MonoBehaviour
 
                 X_Velocity -= MaxSpeed * Acceleration * Time.deltaTime;
             }
+            X_Moin = true;
+            X_Plus = false;
         }
         else
         {
@@ -152,6 +166,47 @@ public class Player_Mouvement : MonoBehaviour
                     X_Velocity += MaxSpeed * Decceleration * Time.deltaTime;
                 }
             }
+            X_Moin = false;
+            X_Plus = false;
+        }
+
+        if (X_Plus == true)
+        {
+            if (Y_Plus == true)
+            {
+                CurrentDirection = "HD";
+            }
+            else if (Y_Moins == true)
+            {
+                CurrentDirection = "BD";
+            }
+            else
+            {
+                CurrentDirection = "D";
+            }
+        }
+        else if (X_Moin == true)
+        {
+            if (Y_Plus == true)
+            {
+                CurrentDirection = "HG";
+            }
+            else if (Y_Moins == true)
+            {
+                CurrentDirection = "BG";
+            }
+            else
+            {
+                CurrentDirection = "G";
+            }
+        }
+        else if (Y_Plus == true)
+        {
+            CurrentDirection = "H";
+        }
+        else if (Y_Moins == true)
+        {
+            CurrentDirection = "B";
         }
 
         if (X_Velocity >= MaxSpeed) // if X Velocity is > at the higgest speed autorised so X Velocity equal to max speed
