@@ -17,7 +17,7 @@ public class Player_Sword : MonoBehaviour
             StartCoroutine(Smashing());
         }
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.O))
         {
             //Shield = true;
             Gameobject_Shield.gameObject.SetActive(true);
