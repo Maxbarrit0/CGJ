@@ -170,43 +170,45 @@ public class Player_Mouvement : MonoBehaviour
             X_Plus = false;
         }
 
+        //This will check in which direction the player are looking
+
         if (X_Plus == true)
         {
             if (Y_Plus == true)
             {
-                CurrentDirection = "HD";
+                CurrentDirection = "UR"; // UP down
             }
             else if (Y_Moins == true)
             {
-                CurrentDirection = "BD";
+                CurrentDirection = "DR"; // Down right
             }
             else
             {
-                CurrentDirection = "D";
+                CurrentDirection = "R"; // R
             }
         }
         else if (X_Moin == true)
         {
             if (Y_Plus == true)
             {
-                CurrentDirection = "HG";
+                CurrentDirection = "UL"; // Up Left
             }
             else if (Y_Moins == true)
             {
-                CurrentDirection = "BG";
+                CurrentDirection = "DL"; // Down Left
             }
             else
             {
-                CurrentDirection = "G";
+                CurrentDirection = "L"; // Left
             }
         }
         else if (Y_Plus == true)
         {
-            CurrentDirection = "H";
+            CurrentDirection = "U"; // UP
         }
         else if (Y_Moins == true)
         {
-            CurrentDirection = "B";
+            CurrentDirection = "D"; //Down
         }
 
         if (X_Velocity >= MaxSpeed) // if X Velocity is > at the higgest speed autorised so X Velocity equal to max speed

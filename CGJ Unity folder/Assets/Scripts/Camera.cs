@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This scripts set the camera size to be always in 16:9
+
 public class Camera : MonoBehaviour
 {
     private Rect rect;

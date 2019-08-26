@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
 {
-    ContentSizeFitter SizeFilter;
-    public Image Bulle_Image;
-    public Text Bulle_Text;
+    //Boss life
+    public static int Life = 5;
 
     private void Start()
     {
@@ -16,6 +15,23 @@ public class Boss : MonoBehaviour
     }
 
     private void Update()
+    {
+        SetSizeDialogue();
+        if (Input.GetKeyDown(KeyCode.Space) && Finished == true)
+        {
+            Bulle_Text.text = "";
+            Bulle_Image.gameObject.SetActive(false);
+        }
+    }
+
+    #region Dialogue algorithme // Trying to do aglorithm dialogue
+
+    bool Finished;
+    ContentSizeFitter SizeFilter;
+    public Image Bulle_Image;
+    public Text Bulle_Text;
+
+    void SetSizeDialogue()
     {
         Bulle_Image.rectTransform.sizeDelta = new Vector2(Bulle_Text.rectTransform.rect.width * Bulle_Text.rectTransform.localScale.x + 10, Bulle_Text.rectTransform.rect.height * Bulle_Text.rectTransform.localScale.y + 10);
         if (Bulle_Text.rectTransform.rect.width >= 480)
@@ -26,7 +42,6 @@ public class Boss : MonoBehaviour
         {
             SizeFilter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
         }
-
     }
 
     IEnumerator AfficherParole(string Parole, float Speed)
@@ -37,6 +52,13 @@ public class Boss : MonoBehaviour
             yield return new WaitForSeconds(Speed);
             Bulle_Text.text += Parole[0];
             Parole = Parole.Substring(1);
+            Finished = false;
+            if (Parole.Length == 0)
+            {
+                Finished = true;
+            }
         }
     }
+
+    #endregion
 }

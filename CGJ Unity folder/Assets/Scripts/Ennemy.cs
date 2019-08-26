@@ -35,11 +35,11 @@ public class Ennemy : MonoBehaviour
         //Make the gameobject move into Satan
         Rigid.velocity = transform.up * Speed;
 
-        if (Direction == "D")
+        if (Direction == "R") //If direction where is spawn is in the right so it will always look at the left
         {
             GFX.transform.rotation = Quaternion.Euler(0, 0, -this.transform.rotation.z);
         }
-        else
+        else //If direction where is spawn is in the left so it will always look at the right
         {
             GFX.transform.rotation = Quaternion.Euler(0, -180, -this.transform.rotation.z);
         }
@@ -49,10 +49,13 @@ public class Ennemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Satan") // if collision = Satan so the monster is destroyed
         {
+            Boss.Life--;
+            Main.RemainsMonster--;
             Destroy(this.gameObject);
         }
-        else if (collision.gameObject.tag == "Sword")
+        else if (collision.gameObject.tag == "Sword") // if he is smahing he die
         {
+            Main.RemainsMonster--;
             Destroy(this.gameObject);
         }
     }
