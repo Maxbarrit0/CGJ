@@ -28,12 +28,21 @@ public class Ennemy : MonoBehaviour
 
     private void Update()
     {
+        Knocked -= 1 * Time.deltaTime;
 
         //Make the gameobject look Satan
         this.transform.up = Satan.transform.position - this.transform.position;
 
         //Make the gameobject move into Satan
-        Rigid.velocity = transform.up * Speed;
+        if (Knocked <= 0)
+        {
+            Rigid.velocity = transform.up * Speed;
+        }
+        else
+        {
+            Velocity -= Pos * Durée * Time.deltaTime;
+            Rigid.velocity = Velocity;
+        }
 
         if (Direction == "R") //If direction where is spawn is in the right so it will always look at the left
         {
@@ -49,7 +58,7 @@ public class Ennemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Satan") // if collision = Satan so the monster is destroyed
         {
-            Boss.Life--;
+            //Boss.Life--;
             Main.RemainsMonster--;
             Destroy(this.gameObject);
         }
@@ -58,5 +67,24 @@ public class Ennemy : MonoBehaviour
             Main.RemainsMonster--;
             Destroy(this.gameObject);
         }
+        else if (collision.gameObject.tag == "Shield")
+        {
+            if (Knocked <= 0)
+            {
+                Pos = transform.position - collision.gameObject.transform.position;
+                Pos.Normalize();
+                Velocity = Pos * ForceWhenKnocked;
+                Rigid.velocity = Pos * ForceWhenKnocked;
+                Knocked = Durée;
+            }
+        }
+        else if (collision.gameObject.tag == "Obstacle")
+        {
+            Knocked = 0;
+        }
     }
+
+    public float ForceWhenKnocked, Durée;
+    public Vector2 Pos, Velocity;
+    float Knocked;
 }

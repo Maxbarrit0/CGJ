@@ -45,7 +45,7 @@ public class Main : MonoBehaviour
             //if r = 1
             if (r == 1)
             {
-                Script_Ennemy.Direction = "D";
+                Script_Ennemy.Direction = "R";
                 Script_Ennemy.Speed = Wave + 5;
 
                 //do the monster at that random pos
@@ -53,7 +53,7 @@ public class Main : MonoBehaviour
             }
             else if (r == 2)
             {
-                Script_Ennemy.Direction = "G";
+                Script_Ennemy.Direction = "L";
                 Script_Ennemy.Speed = Wave + 5;
 
                 //do the monster at that random pos

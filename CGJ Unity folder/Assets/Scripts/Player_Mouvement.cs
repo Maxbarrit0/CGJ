@@ -28,23 +28,23 @@ public class Player_Mouvement : MonoBehaviour
 
     void Animation()
     {
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && Player_Sword.Shield == false)
         {
             this.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && Player_Sword.Shield == false)
         {
             this.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && Player_Sword.Shield == false)
         {
             Anim.SetInteger("State", 3);
         }
-        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        else if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && Player_Sword.Shield == false)
         {
             Anim.SetInteger("State", 2);
         }
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+        else if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && Player_Sword.Shield == false)
         {
             Anim.SetInteger("State", 1);
         }
@@ -80,7 +80,7 @@ public class Player_Mouvement : MonoBehaviour
 
         //Check if the user have pressed the touch Z 
 
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && Player_Sword.Shield == false)
         {
             if (Y_Velocity < 0)
             {
@@ -97,7 +97,7 @@ public class Player_Mouvement : MonoBehaviour
             Y_Plus = true;
             Y_Moins = false;
         }
-        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        else if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && Player_Sword.Shield == false)
         {
             if (Y_Velocity > 0)
             {
@@ -116,26 +116,11 @@ public class Player_Mouvement : MonoBehaviour
         }
         else
         {
-            if (Y_Velocity >= -0.1f && Y_Velocity <= 0.1f) // If Y velocity is approching 0 so Y velocity equals 0
-            {
-                Y_Velocity = 0;
-            }
-            else
-            {
-                if (Y_Velocity > 0.1f) // If Y Velocity > 0.1f Velocity deccelerate for approching 0 then stop
-                {
-                    Y_Velocity -= MaxSpeed * Decceleration * Time.deltaTime;
-                }
-                else // If Y Velocity < 0.1f Velocity accelerate for approching 0 then stop
-                {
-                    Y_Velocity += MaxSpeed * Decceleration * Time.deltaTime;
-                }
-            }
             Y_Moins = false;
             Y_Plus = false;
         }
 
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && Player_Sword.Shield == false)
         {
             if (X_Velocity < 0)
             {
@@ -153,7 +138,7 @@ public class Player_Mouvement : MonoBehaviour
             X_Moin = false;
 
         }
-        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && Player_Sword.Shield == false)
         {
             if (X_Velocity > 0)
             {
@@ -171,6 +156,12 @@ public class Player_Mouvement : MonoBehaviour
             X_Plus = false;
         }
         else
+        {
+            X_Moin = false;
+            X_Plus = false;
+        }
+
+        if (X_Moin == false && X_Plus == false)
         {
             if (X_Velocity >= -0.3f && X_Velocity <= 0.3f) // If X velocity is approching 0 so X Velocity equals 0
             {
@@ -191,8 +182,25 @@ public class Player_Mouvement : MonoBehaviour
                     X_Velocity += MaxSpeed * Decceleration * Time.deltaTime;
                 }
             }
-            X_Moin = false;
-            X_Plus = false;
+        }
+
+        if (Y_Moins == false && Y_Plus == false)
+        {
+            if (Y_Velocity >= -0.1f && Y_Velocity <= 0.1f) // If Y velocity is approching 0 so Y velocity equals 0
+            {
+                Y_Velocity = 0;
+            }
+            else
+            {
+                if (Y_Velocity > 0.1f) // If Y Velocity > 0.1f Velocity deccelerate for approching 0 then stop
+                {
+                    Y_Velocity -= MaxSpeed * Decceleration * Time.deltaTime;
+                }
+                else // If Y Velocity < 0.1f Velocity accelerate for approching 0 then stop
+                {
+                    Y_Velocity += MaxSpeed * Decceleration * Time.deltaTime;
+                }
+            }
         }
 
         //This will check in which direction the player are looking
@@ -257,6 +265,7 @@ public class Player_Mouvement : MonoBehaviour
         //Applie the velocity to the rigidbody
 
         Body.velocity = new Vector2(X_Velocity, Y_Velocity);
+
     }
 
     //A function that will be trigger every time the gameobject will be on collision with gameobject
