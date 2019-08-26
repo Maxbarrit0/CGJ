@@ -486,15 +486,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ea54843d22e4b2a96d80a4f98e9968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GFX: {fileID: 1598212168}
   X_Velocity: 0
   Y_Velocity: 0
   MaxSpeed: 10
   Acceleration: 4
   Decceleration: 5
-  X_Plus: 0
-  X_Moin: 0
-  Y_Plus: 0
-  Y_Moins: 0
 --- !u!61 &262155097
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -547,7 +544,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 262155095}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.17, y: -4.7, z: 0}
+  m_LocalPosition: {x: 0.17, y: -3.3, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children:
   - {fileID: 1598212169}
@@ -668,7 +665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &418083968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1614,7 +1611,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 344, y: 261}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 57.971012, y: 41.73913}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1224514857
 MonoBehaviour:
@@ -1872,7 +1869,7 @@ Animator:
   m_GameObject: {fileID: 1598212168}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aaa7ffcff6e564cb1998e2d68d6b743b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 45cd453712dcc40c2be4d60790e36f68, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Player_Mouvement : MonoBehaviour
 {
+    Animator Anim;
     Rigidbody2D Body;
+    public GameObject GFX;
 
     private void Start()
     {
+        Anim = GFX.GetComponent<Animator>();
+
         //Set "Body" the rigidbody attached to this gamobject
         Body = this.GetComponent<Rigidbody2D>();
     }
@@ -28,11 +32,32 @@ public class Player_Mouvement : MonoBehaviour
         {
             this.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        else if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             this.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        {
+            Anim.SetInteger("State", 3);
+        }
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        {
+            Anim.SetInteger("State", 2);
+        }
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+        {
+            Anim.SetInteger("State", 1);
+        }
+        else
+        {
+            Anim.SetInteger("State", 0);
+        }
     }
+
+    //State (0) = idle
+    //State (1) = run
+    //State (2) = run down
+    //State (3) = run up
 
     #endregion
 
@@ -48,14 +73,14 @@ public class Player_Mouvement : MonoBehaviour
     public float Decceleration;
 
     public static string CurrentDirection;
-    public bool X_Plus, X_Moin, Y_Plus, Y_Moins;
+    public static bool X_Plus, X_Moin, Y_Plus, Y_Moins;
 
     private void Mouvement()
     {
 
         //Check if the user have pressed the touch Z 
 
-        if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             if (Y_Velocity < 0)
             {
@@ -128,7 +153,7 @@ public class Player_Mouvement : MonoBehaviour
             X_Moin = false;
 
         }
-        else if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             if (X_Velocity > 0)
             {
