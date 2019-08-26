@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
+    public GameObject BG_1, BG_2, BG_3;
+
     //The time between each respawn
     float cooldownOfRespawn = 2;
 
@@ -15,7 +17,7 @@ public class Main : MonoBehaviour
     public GameObject Monstre;
     Ennemy Script_Ennemy;
 
-    public int Wave = 1;
+    public static int Wave = 1;
     public static int RemainsMonster = 10, RemainsMonsterToSummon = 10;
 
     private void Start()
@@ -25,6 +27,24 @@ public class Main : MonoBehaviour
 
     private void Update()
     {
+        if (Wave >= 15)
+        {
+            BG_1.gameObject.SetActive(false);
+            BG_2.gameObject.SetActive(false);
+            BG_3.gameObject.SetActive(true);
+        }
+        else if (Wave >= 10)
+        {
+            BG_1.gameObject.SetActive(false);
+            BG_2.gameObject.SetActive(true);
+            BG_3.gameObject.SetActive(false);
+        }
+        else
+        {
+            BG_1.gameObject.SetActive(true);
+            BG_2.gameObject.SetActive(false);
+            BG_3.gameObject.SetActive(false);
+        }
         UI();
         if (RemainsMonster <= 0)
         {

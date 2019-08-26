@@ -58,7 +58,7 @@ public class Ennemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Satan") // if collision = Satan so the monster is destroyed
         {
-            //Boss.Life--;
+            Boss.Life--;
             Main.RemainsMonster--;
             Destroy(this.gameObject);
         }
