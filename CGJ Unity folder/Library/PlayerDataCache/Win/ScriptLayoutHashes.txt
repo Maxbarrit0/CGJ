@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-/Users/stephanebosso/Desktop/CGJ/CGJ Unity folder/The game /CGJ Unity folder.exe
+/Users/stephanebosso/Desktop/CGJ/CGJ Unity folder/The game /The game/CGJ Unity folder.exe
 SceneListBegin?
 Assets/Scenes/Room.unity
 Assets/Scenes/GameOver.unity
