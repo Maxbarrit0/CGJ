@@ -10,7 +10,7 @@ public class Ennemy : MonoBehaviour
     CircleCollider2D BoxOfEnnemy;
     public BoxCollider2D BoxOfWallRight, BoxOfWallLeft;
 
-    Rigidbody2D Rigid;
+    public Rigidbody2D Rigid;
     public GameObject Satan, GFX;
 
     //The speed of the monster
@@ -62,22 +62,6 @@ public class Ennemy : MonoBehaviour
             Main.RemainsMonster--;
             Destroy(this.gameObject);
         }
-        else if (collision.gameObject.tag == "Sword") // if he is smahing he die
-        {
-            Main.RemainsMonster--;
-            Destroy(this.gameObject);
-        }
-        else if (collision.gameObject.tag == "Shield")
-        {
-            if (Knocked <= 0)
-            {
-                Pos = transform.position - collision.gameObject.transform.position;
-                Pos.Normalize();
-                Velocity = Pos * ForceWhenKnocked;
-                Rigid.velocity = Pos * ForceWhenKnocked;
-                Knocked = Durée;
-            }
-        }
         else if (collision.gameObject.tag == "Obstacle")
         {
             Knocked = 0;
@@ -86,5 +70,5 @@ public class Ennemy : MonoBehaviour
 
     public float ForceWhenKnocked, Durée;
     public Vector2 Pos, Velocity;
-    float Knocked;
+    public float Knocked;
 }

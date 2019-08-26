@@ -1,30 +1,14 @@
 ﻿<Properties StartupConfiguration="{D5D6194B-83AE-2A18-31DD-AAC0E102E505}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/RestartButton.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player_Mouvement.cs">
     <Files>
-      <File FileName="Assets/Scripts/Player_Mouvement.cs" Line="216" Column="28" />
-      <File FileName="Assets/Scripts/Player_Sword.cs" Line="20" Column="64" />
-      <File FileName="Assets/Scripts/Ennemy.cs" Line="61" Column="13" />
-      <File FileName="Assets/Scripts/Main.cs" Line="20" Column="18" />
-      <File FileName="Assets/Scripts/Player_Animation.cs" />
-      <File FileName="Assets/Scripts/RestartButton.cs" Line="15" Column="23" />
+      <File FileName="Assets/Scripts/Ennemy.cs" Line="13" Column="12" />
+      <File FileName="Assets/Scripts/Ennemy_Combination.cs" />
+      <File FileName="Assets/Scripts/Player_Mouvement.cs" Line="94" Column="30" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="CGJ Unity folder" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="RestartButton.cs" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="997c7e00-9f96-4b92-a014-3d94a88b1b28" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="c8a9e5a3-f8bc-44ba-aa0e-6e056a2beac7" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

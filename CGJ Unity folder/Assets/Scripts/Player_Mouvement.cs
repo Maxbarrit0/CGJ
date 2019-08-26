@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Player_Mouvement : MonoBehaviour
 {
+    float Knocked, Cooldown;
+    public BoxCollider2D ThisBox;
+    public CircleCollider2D BossBOX;
     Animator Anim;
     Rigidbody2D Body;
     public GameObject GFX;
 
     private void Start()
     {
+        Physics2D.IgnoreCollision(ThisBox, BossBOX);
+
         Anim = GFX.GetComponent<Animator>();
 
         //Set "Body" the rigidbody attached to this gamobject
@@ -28,29 +33,32 @@ public class Player_Mouvement : MonoBehaviour
 
     void Animation()
     {
-        if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && Player_Sword.Shield == false)
+        if (Knocked <= 0)
         {
-            this.transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && Player_Sword.Shield == false)
-        {
-            this.transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && Player_Sword.Shield == false)
-        {
-            Anim.SetInteger("State", 3);
-        }
-        else if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && Player_Sword.Shield == false)
-        {
-            Anim.SetInteger("State", 2);
-        }
-        else if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && Player_Sword.Shield == false)
-        {
-            Anim.SetInteger("State", 1);
-        }
-        else
-        {
-            Anim.SetInteger("State", 0);
+            if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && Player_Sword.Shield == false)
+            {
+                this.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && Player_Sword.Shield == false)
+            {
+                this.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && Player_Sword.Shield == false)
+            {
+                Anim.SetInteger("State", 3);
+            }
+            else if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && Player_Sword.Shield == false)
+            {
+                Anim.SetInteger("State", 2);
+            }
+            else if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && Player_Sword.Shield == false)
+            {
+                Anim.SetInteger("State", 1);
+            }
+            else
+            {
+                Anim.SetInteger("State", 0);
+            }
         }
     }
 
@@ -77,89 +85,116 @@ public class Player_Mouvement : MonoBehaviour
 
     private void Mouvement()
     {
+        Knocked -= 1 * Time.deltaTime;
+        Cooldown -= 1 * Time.deltaTime;
 
-        //Check if the user have pressed the touch Z 
-
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && Player_Sword.Shield == false)
+        if (Knocked <= 0)
         {
-            if (Y_Velocity < 0)
-            {
-                // if Y velocity is < 0 then it will accelerate more 
+            ThisBox.enabled = true;
+            GFX.active = true;
 
-                Y_Velocity += MaxSpeed * 4 * Time.deltaTime;
+            //Check if the user have pressed the touch Z 
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            {
+                if (Y_Velocity < 0)
+                {
+                    // if Y velocity is < 0 then it will accelerate more 
+
+                    Y_Velocity += MaxSpeed * 4 * Time.deltaTime;
+                }
+                else
+                {
+                    // if Y velocity is > 0 then it will accelerate normally
+
+                    Y_Velocity += MaxSpeed * Acceleration * Time.deltaTime;
+                }
+                Y_Plus = true;
+                Y_Moins = false;
+            }
+            else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            {
+                if (Y_Velocity > 0)
+                {
+                    // if Y velocity is < 0 then it will deccelerate more 
+
+                    Y_Velocity -= MaxSpeed * 4 * Time.deltaTime;
+                }
+                else
+                {
+                    // if Y velocity is > 0 then it will deccelerate normally
+
+                    Y_Velocity -= MaxSpeed * Acceleration * Time.deltaTime;
+                }
+                Y_Moins = true;
+                Y_Plus = false;
             }
             else
             {
-                // if Y velocity is > 0 then it will accelerate normally
-
-                Y_Velocity += MaxSpeed * Acceleration * Time.deltaTime;
+                Y_Moins = false;
+                Y_Plus = false;
             }
-            Y_Plus = true;
-            Y_Moins = false;
-        }
-        else if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && Player_Sword.Shield == false)
-        {
-            if (Y_Velocity > 0)
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
-                // if Y velocity is < 0 then it will deccelerate more 
+                if (X_Velocity < 0)
+                {
+                    // if X velocity is < 0 then it will accelerate more 
 
-                Y_Velocity -= MaxSpeed * 4 * Time.deltaTime;
+                    X_Velocity += MaxSpeed * 4 * Time.deltaTime;
+                }
+                else
+                {
+                    // if X velocity is > 0 then it will accelerate normally
+
+                    X_Velocity += MaxSpeed * Acceleration * Time.deltaTime;
+                }
+                X_Plus = true;
+                X_Moin = false;
+
+            }
+            else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            {
+                if (X_Velocity > 0)
+                {
+                    // if X velocity is > 0 then it will deccelerate more 
+
+                    X_Velocity -= MaxSpeed * 4 * Time.deltaTime;
+                }
+                else
+                {
+                    // if X velocity is < 0 then it will deccelerate normally
+
+                    X_Velocity -= MaxSpeed * Acceleration * Time.deltaTime;
+                }
+                X_Moin = true;
+                X_Plus = false;
             }
             else
             {
-                // if Y velocity is > 0 then it will deccelerate normally
-
-                Y_Velocity -= MaxSpeed * Acceleration * Time.deltaTime;
+                X_Moin = false;
+                X_Plus = false;
             }
-            Y_Moins = true;
-            Y_Plus = false;
         }
         else
         {
+            ThisBox.enabled = false;
+            if (Cooldown <= 0)
+            {
+                if (GFX.active == true)
+                {
+                    GFX.active = false;
+                }
+                else
+                {
+                    GFX.active = true;
+                }
+                Cooldown = 0.2f;
+            }
+            X_Moin = false;
+            X_Plus = false;
             Y_Moins = false;
             Y_Plus = false;
         }
 
-        if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && Player_Sword.Shield == false)
-        {
-            if (X_Velocity < 0)
-            {
-                // if X velocity is < 0 then it will accelerate more 
-
-                X_Velocity += MaxSpeed * 4 * Time.deltaTime;
-            }
-            else
-            {
-                // if X velocity is > 0 then it will accelerate normally
-
-                X_Velocity += MaxSpeed * Acceleration * Time.deltaTime;
-            }
-            X_Plus = true;
-            X_Moin = false;
-
-        }
-        else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && Player_Sword.Shield == false)
-        {
-            if (X_Velocity > 0)
-            {
-                // if X velocity is > 0 then it will deccelerate more 
-
-                X_Velocity -= MaxSpeed * 4 * Time.deltaTime;
-            }
-            else
-            {
-                // if X velocity is < 0 then it will deccelerate normally
-
-                X_Velocity -= MaxSpeed * Acceleration * Time.deltaTime;
-            }
-            X_Moin = true;
-            X_Plus = false;
-        }
-        else
-        {
-            X_Moin = false;
-            X_Plus = false;
-        }
 
         if (X_Moin == false && X_Plus == false)
         {
@@ -289,6 +324,13 @@ public class Player_Mouvement : MonoBehaviour
             {
                 //Reboundish
                 X_Velocity *= -0.75f;
+            }
+        }
+        else if (collision.gameObject.tag == "Monster")
+        {
+            if (Knocked <= 0)
+            {
+                Knocked = 1;
             }
         }
     }

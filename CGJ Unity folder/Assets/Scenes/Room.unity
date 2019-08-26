@@ -486,6 +486,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ea54843d22e4b2a96d80a4f98e9968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ThisBox: {fileID: 262155097}
+  BossBOX: {fileID: 1033690574}
   GFX: {fileID: 1598212168}
   X_Velocity: 0
   Y_Velocity: 0
@@ -515,7 +517,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.92}
+  m_Size: {x: 0.6, y: 2.4}
   m_EdgeRadius: 0
 --- !u!50 &262155098
 Rigidbody2D:
@@ -1328,7 +1330,6 @@ MonoBehaviour:
   BG_2: {fileID: 1511014137}
   BG_3: {fileID: 1127262290}
   Monstre: {fileID: 1686892486}
-  Wave: 1
   WaveText: {fileID: 1576425889}
   RemainMonster: {fileID: 939526622}
 --- !u!114 &983340099
@@ -1410,7 +1411,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 19ef4eca7c4fe4474b31dc8d73a3e263, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2233,9 +2234,10 @@ GameObject:
   - component: {fileID: 1686892489}
   - component: {fileID: 1686892490}
   - component: {fileID: 1686892488}
+  - component: {fileID: 1686892491}
   m_Layer: 0
   m_Name: Monster
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2283,6 +2285,7 @@ MonoBehaviour:
   Direction: 
   BoxOfWallRight: {fileID: 108442966}
   BoxOfWallLeft: {fileID: 237789075}
+  Rigid: {fileID: 0}
   Satan: {fileID: 1033690573}
   GFX: {fileID: 1850624129}
   Speed: 5
@@ -2290,6 +2293,7 @@ MonoBehaviour:
   "Dur\xE9e": 1
   Pos: {x: 0, y: 0}
   Velocity: {x: 0, y: 0}
+  Knocked: 0
 --- !u!50 &1686892490
 Rigidbody2D:
   serializedVersion: 4
@@ -2310,6 +2314,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1686892491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1686892486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ebf73df41b94b938acbb6a1e12e9ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TypeOfMonstre: 0
+  TypeAttackOne: 1
+  TypeAttackTwo: 0
+  TypeAttackThree: 2
 --- !u!1 &1763048115
 GameObject:
   m_ObjectHideFlags: 0

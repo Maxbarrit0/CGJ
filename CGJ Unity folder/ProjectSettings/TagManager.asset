@@ -8,6 +8,7 @@ TagManager:
   - Satan
   - Sword
   - Shield
+  - Monster
   layers:
   - Default
   - TransparentFX

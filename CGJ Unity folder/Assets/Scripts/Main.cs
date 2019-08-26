@@ -27,13 +27,13 @@ public class Main : MonoBehaviour
 
     private void Update()
     {
-        if (Wave >= 15)
+        if (Wave >= 10)
         {
             BG_1.gameObject.SetActive(false);
             BG_2.gameObject.SetActive(false);
             BG_3.gameObject.SetActive(true);
         }
-        else if (Wave >= 10)
+        else if (Wave >= 5)
         {
             BG_1.gameObject.SetActive(false);
             BG_2.gameObject.SetActive(true);
