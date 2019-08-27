@@ -1,8 +1,10 @@
 ﻿<Properties StartupConfiguration="{D5D6194B-83AE-2A18-31DD-AAC0E102E505}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Auto_LoadScene.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Camera_Mouvement.cs">
     <Files>
-      <File FileName="Assets/Scripts/Main.cs" Line="103" Column="37" />
-      <File FileName="Assets/Scripts/Auto_LoadScene.cs" Line="13" Column="45" />
+      <File FileName="Assets/Scripts/Main.cs" Line="136" Column="73" />
+      <File FileName="Assets/Scripts/Door.cs" Line="13" Column="28" />
+      <File FileName="Assets/Scripts/Ennemy.cs" Line="25" Column="64" />
+      <File FileName="Assets/Scripts/Camera_Mouvement.cs" Line="18" Column="44" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -10,7 +12,7 @@
           <Node name="CGJ Unity folder" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Auto_LoadScene.cs" selected="True" />
+                <Node name="Camera_Mouvement.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -20,7 +22,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="2742e6d3-092f-4d88-afc8-82700bcb0179" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="878391f5-3a94-43f6-86df-a8515c9e8a7f" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

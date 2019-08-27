@@ -8,7 +8,7 @@ public class Ennemy : MonoBehaviour
 
     //This box is here for avoid the monster to collide with the two wall collider
     CircleCollider2D BoxOfEnnemy;
-    public BoxCollider2D BoxOfWallRight, BoxOfWallLeft;
+    public BoxCollider2D BoxOfWallRight, BoxOfWallLeft_Up, BoxOfWallLeft_Down;
 
     public Rigidbody2D Rigid;
     public GameObject Satan, GFX;
@@ -22,7 +22,8 @@ public class Ennemy : MonoBehaviour
         Rigid = this.GetComponent<Rigidbody2D>();
 
         //Ignore collision between monster and the two wall
-        Physics2D.IgnoreCollision(BoxOfEnnemy, BoxOfWallLeft);
+        Physics2D.IgnoreCollision(BoxOfEnnemy, BoxOfWallLeft_Up);
+        Physics2D.IgnoreCollision(BoxOfEnnemy, BoxOfWallLeft_Down);
         Physics2D.IgnoreCollision(BoxOfEnnemy, BoxOfWallRight);
     }
 

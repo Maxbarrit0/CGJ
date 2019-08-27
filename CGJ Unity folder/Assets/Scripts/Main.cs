@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
+    public static bool DoorOpen;
     public GameObject BG_1, BG_2, BG_3;
 
     //The time between each respawn
@@ -16,7 +17,7 @@ public class Main : MonoBehaviour
     //The gameobject that will be spawn
 
     public static int Wave = 1;
-    public static int RemainsMonster = 10, RemainsMonsterToSummon = 10;
+    public static int RemainsMonster = 5, RemainsMonsterToSummon = 5;
 
     private void Update()
     {
@@ -39,18 +40,26 @@ public class Main : MonoBehaviour
             BG_3.gameObject.SetActive(false);
         }
         UI();
-        if (RemainsMonster <= 0)
+        if (RemainsMonster <= 0 && DoorOpen == false)
         {
-            Wave++;
-            RemainsMonster = 10 + 5 * Wave;
-            RemainsMonsterToSummon = 10 + 5 * Wave;
+            if (Wave == 4)
+            {
+                Wave++;
+                DoorOpen = true;
+            }
+            else
+            {
+                Wave++;
+                RemainsMonster = 5 + Wave;
+                RemainsMonsterToSummon = 5 + Wave;
+            }
         }
 
         //Make the time reduce by 1 each second
         cooldownOfRespawn -= 1 * (Wave / 10 + 1) * Time.deltaTime;
 
         //If Cooldown < 0 so it's time to summon a monster
-        if (cooldownOfRespawn <= 0 && RemainsMonsterToSummon >= 1)
+        if (cooldownOfRespawn <= 0 && RemainsMonsterToSummon > 0)
         {
 
             Spawning_Mob();
@@ -118,13 +127,13 @@ public class Main : MonoBehaviour
         {
 
             //do the monster at that random pos
-            Monster.transform.position = new Vector3(-14, Random.Range(-6.5f, 6.5f + 1), 0);
+            Monster.transform.position = new Vector3(-14, Random.Range(-5f, 5f + 1), 0);
         }
         else if (r == 2)
         {
 
             //do the monster at that random pos
-            Monster.transform.position = new Vector3(14, Random.Range(-6.5f, 6.5f + 1), 0);
+            Monster.transform.position = new Vector3(14, Random.Range(-5f, 5f + 1), 0);
         }
 
 
