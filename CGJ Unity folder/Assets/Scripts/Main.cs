@@ -14,16 +14,9 @@ public class Main : MonoBehaviour
     float cooldownOfRespawn = 2;
 
     //The gameobject that will be spawn
-    public GameObject Monstre;
-    Ennemy Script_Ennemy;
 
     public static int Wave = 1;
     public static int RemainsMonster = 10, RemainsMonsterToSummon = 10;
-
-    private void Start()
-    {
-        Script_Ennemy = Monstre.GetComponent<Ennemy>();
-    }
 
     private void Update()
     {
@@ -59,34 +52,8 @@ public class Main : MonoBehaviour
         //If Cooldown < 0 so it's time to summon a monster
         if (cooldownOfRespawn <= 0 && RemainsMonsterToSummon >= 1)
         {
-            //take a value that will have a random value between 1 and 2 (In this command there is a surcharges of 1 so we need to add 1)
-            int r = Random.Range(1, 2 + 1);
 
-            //if r = 1
-            if (r == 1)
-            {
-                Script_Ennemy.Direction = "R";
-                Script_Ennemy.Speed = Wave + 5;
-
-                //do the monster at that random pos
-                Monstre.transform.position = new Vector3(-14, Random.Range(-6.5f, 6.5f + 1), 0);
-            }
-            else if (r == 2)
-            {
-                Script_Ennemy.Direction = "L";
-                Script_Ennemy.Speed = Wave + 5;
-
-                //do the monster at that random pos
-                Monstre.transform.position = new Vector3(14, Random.Range(-6.5f, 6.5f + 1), 0);
-            }
-
-            //Set the time for a new monster to spawn
-            cooldownOfRespawn = Random.Range(1, 2 + 1);
-
-            RemainsMonsterToSummon--;
-
-            //Create the monster in the scene
-            Instantiate(Monstre);
+            Spawning_Mob();
         }
 
         // this part do thing if the boss die
@@ -103,5 +70,65 @@ public class Main : MonoBehaviour
     {
         WaveText.text = "Wave : " + Wave;
         RemainMonster.text = "" + RemainsMonster + " Remains monster";
+    }
+
+    public GameObject Runners, DemonHead, RingDemon;
+
+    void Spawning_Mob()
+    {
+        int MonsterChoosing = 1;
+        if (Wave > 2)
+        {
+            MonsterChoosing = Random.Range(1, 3 + 1);
+        }
+        else if (Wave > 1)
+        {
+            MonsterChoosing = Random.Range(1, 2 + 1);
+        }
+        else
+        {
+            MonsterChoosing = 1;
+        }
+
+        if (MonsterChoosing == 1) // It's the running one
+        {
+            MonsterSpawn(Runners);
+        }
+        else if (MonsterChoosing == 2)
+        {
+            MonsterSpawn(DemonHead);
+        }
+        else
+        {
+            MonsterSpawn(RingDemon);
+        }
+
+        //Set the time for a new monster to spawn
+        cooldownOfRespawn = Random.Range(1, 2 + 1);
+
+        RemainsMonsterToSummon--;
+    }
+
+    void MonsterSpawn(GameObject Monster)
+    {
+        int r = Random.Range(1, 2 + 1);
+
+        //if r = 1
+        if (r == 1)
+        {
+
+            //do the monster at that random pos
+            Monster.transform.position = new Vector3(-14, Random.Range(-6.5f, 6.5f + 1), 0);
+        }
+        else if (r == 2)
+        {
+
+            //do the monster at that random pos
+            Monster.transform.position = new Vector3(14, Random.Range(-6.5f, 6.5f + 1), 0);
+        }
+
+
+        //Create the monster in the scene
+        Instantiate(Monster);
     }
 }

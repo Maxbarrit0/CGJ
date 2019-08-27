@@ -44,13 +44,13 @@ public class Ennemy : MonoBehaviour
             Rigid.velocity = Velocity;
         }
 
-        if (Direction == "R") //If direction where is spawn is in the right so it will always look at the left
+        if (this.transform.position.x > 0) //If direction where is spawn is in the right so it will always look at the left
         {
-            GFX.transform.rotation = Quaternion.Euler(0, 0, -this.transform.rotation.z);
+            GFX.transform.rotation = Quaternion.Euler(0, 0, -this.transform.rotation.z); // To the right
         }
         else //If direction where is spawn is in the left so it will always look at the right
         {
-            GFX.transform.rotation = Quaternion.Euler(0, -180, -this.transform.rotation.z);
+            GFX.transform.rotation = Quaternion.Euler(0, -180, -this.transform.rotation.z); // to the left
         }
     }
 
