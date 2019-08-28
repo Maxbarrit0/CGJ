@@ -18,9 +18,30 @@ public class Main : MonoBehaviour
 
     public static int Wave = 1;
     public static int RemainsMonster = 5, RemainsMonsterToSummon = 5;
+    public GameObject Button_Earth, Cadre_Earth, Icon_Earth, Player;
 
     private void Update()
     {
+        if (Player.transform.position.x < 9 && EarthSpellForm.ActifEarthSpell == true && Wave == 5)
+        {
+            Wave++;
+            RemainsMonster = 5 + Wave;
+            RemainsMonsterToSummon = 5 + Wave;
+            DoorOpen = false;
+            cooldownOfRespawn = 1;
+        }
+        if (EarthSpellForm.ActifEarthSpell == true)
+        {
+            Button_Earth.gameObject.SetActive(true);
+            Cadre_Earth.gameObject.SetActive(true);
+            Icon_Earth.gameObject.SetActive(true);
+        }
+        else
+        {
+            Button_Earth.gameObject.SetActive(false);
+            Cadre_Earth.gameObject.SetActive(false);
+            Icon_Earth.gameObject.SetActive(false);
+        }
         if (Wave >= 10)
         {
             BG_1.gameObject.SetActive(false);

@@ -9,6 +9,8 @@ TagManager:
   - Sword
   - Shield
   - Monster
+  - EarthArea
+  - Stop
   layers:
   - Default
   - TransparentFX

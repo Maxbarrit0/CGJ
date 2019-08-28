@@ -1,28 +1,18 @@
 ﻿<Properties StartupConfiguration="{D5D6194B-83AE-2A18-31DD-AAC0E102E505}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Camera_Mouvement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Main.cs">
     <Files>
-      <File FileName="Assets/Scripts/Main.cs" Line="136" Column="73" />
-      <File FileName="Assets/Scripts/Door.cs" Line="13" Column="28" />
-      <File FileName="Assets/Scripts/Ennemy.cs" Line="25" Column="64" />
-      <File FileName="Assets/Scripts/Camera_Mouvement.cs" Line="18" Column="44" />
+      <File FileName="Assets/Scripts/SelectSpell.cs" Line="24" Column="14" />
+      <File FileName="Assets/Scripts/EarthSpell.cs" />
+      <File FileName="Assets/Scripts/EarthSpellForm.cs" />
+      <File FileName="Assets/Scripts/Earth_Animation.cs" />
+      <File FileName="Assets/Scripts/CoffeMachine.cs" />
+      <File FileName="Assets/Scripts/SpellDeliverMove.cs" />
+      <File FileName="Assets/Scripts/Main.cs" Line="19" Column="31" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="CGJ Unity folder" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="Camera_Mouvement.cs" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="878391f5-3a94-43f6-86df-a8515c9e8a7f" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="8cc8c5fb-fc0c-4cf4-847d-e322b460e5e1" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

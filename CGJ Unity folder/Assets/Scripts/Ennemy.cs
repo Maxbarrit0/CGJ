@@ -14,10 +14,14 @@ public class Ennemy : MonoBehaviour
     public GameObject Satan, GFX;
 
     //The speed of the monster
-    public float Speed;
+    public float Speed, LocalSpeed;
 
     private void Start()
     {
+        Anim = GFX.GetComponent<Animator>();
+
+        LocalSpeed = Speed;
+
         BoxOfEnnemy = GetComponent<CircleCollider2D>();
         Rigid = this.GetComponent<Rigidbody2D>();
 
@@ -37,7 +41,7 @@ public class Ennemy : MonoBehaviour
         //Make the gameobject move into Satan
         if (Knocked <= 0)
         {
-            Rigid.velocity = transform.up * Speed;
+            Rigid.velocity = transform.up * LocalSpeed;
         }
         else
         {
@@ -66,6 +70,17 @@ public class Ennemy : MonoBehaviour
         else if (collision.gameObject.tag == "Obstacle")
         {
             Knocked = 0;
+        }
+    }
+
+    Animator Anim;
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "EarthArea")
+        {
+            Anim.speed = 0.25f;
+            LocalSpeed = Speed * 0.25f;
         }
     }
 
