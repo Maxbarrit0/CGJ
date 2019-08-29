@@ -1,18 +1,16 @@
 ﻿<Properties StartupConfiguration="{D5D6194B-83AE-2A18-31DD-AAC0E102E505}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Main.cs">
     <Files>
-      <File FileName="Assets/Scripts/SelectSpell.cs" Line="24" Column="14" />
-      <File FileName="Assets/Scripts/EarthSpell.cs" />
-      <File FileName="Assets/Scripts/EarthSpellForm.cs" />
-      <File FileName="Assets/Scripts/Earth_Animation.cs" />
-      <File FileName="Assets/Scripts/CoffeMachine.cs" />
-      <File FileName="Assets/Scripts/SpellDeliverMove.cs" />
-      <File FileName="Assets/Scripts/Main.cs" Line="19" Column="31" />
+      <File FileName="Assets/Scripts/Main.cs" Line="228" Column="50" />
+      <File FileName="Assets/Scripts/Boss.cs" />
+      <File FileName="Assets/Scripts/Player_Animation.cs" />
+      <File FileName="Assets/Scripts/Player_Mouvement.cs" />
+      <File FileName="Assets/Scripts/Ennemy_Combination.cs" Line="35" Column="102" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="8cc8c5fb-fc0c-4cf4-847d-e322b460e5e1" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="5a641295-d7bf-4e5b-afbc-837633d51afb" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

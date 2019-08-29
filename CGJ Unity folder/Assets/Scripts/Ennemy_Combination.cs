@@ -7,6 +7,10 @@ public class Ennemy_Combination : MonoBehaviour
 
     CircleCollider2D ThisCollider;
 
+    public enum NameMonster { None, DemonHead, RingDemon }
+
+    public NameMonster Name;
+
     public enum TypeOfMonster { Normal, Tutorial }
 
     public TypeOfMonster TypeOfMonstre;
@@ -19,10 +23,19 @@ public class Ennemy_Combination : MonoBehaviour
 
     string CurrentState;
 
+    public GameObject BossG;
     Ennemy Script;
 
     private void Start()
     {
+        if (Name.ToString() == "DemonHead" && Boss.Occuped == false && Main.Ennemy_Head == false)
+        {
+            BossG.SendMessage("NewMonster", "DemonHead");
+        }
+        else if (Name.ToString() == "RingDemon" && Boss.Occuped == false && Main.Ennemy_Ring == false)
+        {
+            BossG.SendMessage("NewMonster", "RingDemon");
+        }
         ThisCollider = this.GetComponent<CircleCollider2D>();
         Script = this.GetComponent<Ennemy>();
         CurrentState = TypeAttackOne.ToString();

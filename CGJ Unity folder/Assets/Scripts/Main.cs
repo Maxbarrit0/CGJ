@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
+    public static bool Ennemy_Head, Ennemy_Ring;
     public static bool DoorOpen;
     public GameObject BG_1, BG_2, BG_3;
 
@@ -17,11 +18,69 @@ public class Main : MonoBehaviour
     //The gameobject that will be spawn
 
     public static int Wave = 1;
-    public static int RemainsMonster = 5, RemainsMonsterToSummon = 5;
-    public GameObject Button_Earth, Cadre_Earth, Icon_Earth, Player;
+    public static int RemainsMonster = 20, RemainsMonsterToSummon = 20;
+    public GameObject Button_Earth, Cadre_Earth, Icon_Earth, Player, Degat;
+    public Text Degat_Text, Tuto;
+    public Degat ScriptDegat;
+    public static bool Stop = true;
+    public static int EtapeTutoriel = 1;
+    public Player_Mouvement MouvementScriptPlayer;
 
     private void Update()
     {
+        if (EtapeTutoriel == 1)
+        {
+            MouvementScriptPlayer.enabled = false;
+        }
+        else
+        {
+            MouvementScriptPlayer.enabled = true;
+        }
+        if (Wave < 2)
+        {
+            if (EtapeTutoriel == 2)
+            {
+                Tuto.gameObject.SetActive(true);
+                Tuto.text = "W,A,S, D or arrows keys for moving";
+            }
+            else if (EtapeTutoriel == 3)
+            {
+                Tuto.gameObject.SetActive(true);
+                Tuto.text = "Left click for use the swords, Right click for use the shield.";
+            }
+            else if (EtapeTutoriel == 4)
+            {
+                Tuto.gameObject.SetActive(true);
+                Tuto.text = "Protect this fearful guys or you will die with him. Don't let those monster kill him !";
+            }
+            else if (EtapeTutoriel == 5)
+            {
+                Tuto.gameObject.SetActive(true);
+                Tuto.text = "This guys have an healt bar in the bottom of the screen, in the top you can see the nomber of wave you are and the remain monster to kill for reach the next one.";
+            }
+            else if (EtapeTutoriel == 6)
+            {
+                Tuto.gameObject.SetActive(true);
+                Tuto.text = "Not all monster can be killed also easy that those. Some will need combination of attack for be killed. This guys will say you what's the combination but be careful i don't know if you can trust him.";
+            }
+            else
+            {
+                Tuto.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            Tuto.gameObject.SetActive(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (EtapeTutoriel == 4 || EtapeTutoriel == 5 || EtapeTutoriel == 6)
+            {
+                EtapeTutoriel++;
+            }
+        }
+
         if (Player.transform.position.x < 9 && EarthSpellForm.ActifEarthSpell == true && Wave == 5)
         {
             Wave++;
@@ -66,11 +125,39 @@ public class Main : MonoBehaviour
             if (Wave == 4)
             {
                 Wave++;
+                ScriptDegat.Positif = true;
+                if (Boss.Life == 9)
+                {
+                    Boss.Life += 1;
+                    Degat_Text.text = "+ 1 !!!";
+                }
+                else if (Boss.Life < 10)
+                {
+                    Boss.Life += 2;
+                    Degat_Text.text = "+ 2 !!!";
+                }
+                ScriptDegat.Positif = false;
                 DoorOpen = true;
+                Instantiate(Degat);
+
             }
             else
             {
                 Wave++;
+                Degat_Text.text = "+ 2 !!!";
+                ScriptDegat.Positif = true;
+                Instantiate(Degat);
+                ScriptDegat.Positif = false;
+                if (Boss.Life == 9)
+                {
+                    Boss.Life += 1;
+                    Degat_Text.text = "+ 1 !!!";
+                }
+                else if (Boss.Life < 10)
+                {
+                    Boss.Life += 2;
+                    Degat_Text.text = "+ 2 !!!";
+                }
                 RemainsMonster = 5 + Wave;
                 RemainsMonsterToSummon = 5 + Wave;
             }
@@ -82,8 +169,10 @@ public class Main : MonoBehaviour
         //If Cooldown < 0 so it's time to summon a monster
         if (cooldownOfRespawn <= 0 && RemainsMonsterToSummon > 0)
         {
-
-            Spawning_Mob();
+            if (Stop == false)
+            {
+                Spawning_Mob();
+            }
         }
 
         // this part do thing if the boss die
@@ -133,8 +222,16 @@ public class Main : MonoBehaviour
             MonsterSpawn(RingDemon);
         }
 
-        //Set the time for a new monster to spawn
-        cooldownOfRespawn = Random.Range(1, 2 + 1);
+        if (EtapeTutoriel >= 7)
+        {
+            //Set the time for a new monster to spawn
+            cooldownOfRespawn = Random.Range(1, 2 + 1);
+        }
+        else
+        {
+            //Set the time for a new monster to spawn
+            cooldownOfRespawn = Random.Range(5, 8 + 1);
+        }
 
         RemainsMonsterToSummon--;
     }

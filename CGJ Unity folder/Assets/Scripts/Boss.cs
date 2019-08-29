@@ -11,16 +11,72 @@ public class Boss : MonoBehaviour
     private void Start()
     {
         SizeFilter = Bulle_Text.GetComponent<ContentSizeFitter>();
-        StartCoroutine(AfficherParole("AGROUGROU i'm a villain ! You must protect me from those monster or i will kill you! AGROUGROU be careful each monster has these power ! Ho i think this one need swords to be killed... Wait ? Ho no he need the shield i made a mistake sorry ! Or... Ho i forgot AHAHAHAHAHA !", 0.05f));
+        if (Main.EtapeTutoriel == 1)
+        {
+            StartCoroutine(AfficherParole("HELP! Anyone?! Someone?! HELP!", 0.03f));
+        }
     }
+
+    public static bool Occuped = false;
+    bool DejaFait;
 
     private void Update()
     {
-        SetSizeDialogue();
-        if (Input.GetKeyDown(KeyCode.Space) && Finished == true)
+        if (Main.EtapeTutoriel == 3 && DejaFait == false)
         {
-            Bulle_Text.text = "";
-            Bulle_Image.gameObject.SetActive(false);
+            StartCoroutine(AfficherParole("AAAAAAAHHH! It's coming for us ! Please Kill those things i don’t wanna die! Here take my stuff and protect me. I don’t wanna die!", 0.01f));
+            DejaFait = true;
+        }
+        SetSizeDialogue();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (Finished == false)
+            {
+                //StopCoroutine(AfficherParole(TextToShow, 0.05f));
+                //Bulle_Text.text = TextToShow;
+            }
+            else
+            {
+                if (Bulle_Text.text != "")
+                {
+                    Bulle_Text.text = "";
+                    Bulle_Image.gameObject.SetActive(false);
+                    Main.EtapeTutoriel++;
+                    if (Main.EtapeTutoriel == 4)
+                    {
+                        Main.Stop = false;
+                    }
+                    Occuped = false;
+                    DejaFait = false;
+                }
+
+            }
+        }
+    }
+
+    public void NewMonster(string Monster)
+    {
+        if (Monster == "DemonHead")
+        {
+            StartCoroutine(AfficherParole("OMG ! This head surely need to be smashed by a shield !", 0.01f));
+            Main.Ennemy_Head = true;
+            Occuped = true;
+        }
+        else if (Monster == "RingDemon")
+        {
+            int r = Random.Range(1, 2 + 1);
+
+            Occuped = true;
+            if (r == 1)
+            {
+                StartCoroutine(AfficherParole("OMG Not this one ! I don't remember what was the combination of this one... Mmm wait... Maybe Sword + Shields ?", 0.05f));
+            }
+            else if (r == 2)
+            {
+                StartCoroutine(AfficherParole("This one need the shield and the sword to be killed ! Be careful !", 0.05f));
+                Main.Ennemy_Ring = true;
+
+            }
         }
     }
 
@@ -47,6 +103,7 @@ public class Boss : MonoBehaviour
     IEnumerator AfficherParole(string Parole, float Speed)
     {
         Bulle_Text.text = null;
+        Bulle_Image.gameObject.SetActive(true);
         while (Parole.Length > 0)
         {
             yield return new WaitForSeconds(Speed);

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ennemy : MonoBehaviour
 {
@@ -59,12 +60,17 @@ public class Ennemy : MonoBehaviour
         }
     }
 
+    public GameObject Degat;
+    public Text ShowDegat;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Satan") // if collision = Satan so the monster is destroyed
         {
             Boss.Life--;
             Main.RemainsMonster--;
+            ShowDegat.text = "-1 !";
+            Instantiate(Degat);
             Destroy(this.gameObject);
         }
         else if (collision.gameObject.tag == "Obstacle")

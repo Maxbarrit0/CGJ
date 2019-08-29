@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Camera_Mouvement.cs" />
     <Compile Include="Assets\Scripts\Camera_Viewport.cs" />
     <Compile Include="Assets\Scripts\CoffeMachine.cs" />
+    <Compile Include="Assets\Scripts\Degat.cs" />
     <Compile Include="Assets\Scripts\Door.cs" />
     <Compile Include="Assets\Scripts\Earth_Animation.cs" />
     <Compile Include="Assets\Scripts\EarthSpell.cs" />

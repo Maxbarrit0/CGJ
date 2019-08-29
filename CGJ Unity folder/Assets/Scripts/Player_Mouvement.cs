@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Mouvement : MonoBehaviour
 {
@@ -9,10 +10,22 @@ public class Player_Mouvement : MonoBehaviour
     public CircleCollider2D BossBOX;
     Animator Anim;
     Rigidbody2D Body;
-    public GameObject GFX;
+    public GameObject GFX, GFX_Sleep;
 
     private void Start()
     {
+        SizeFilter = Bulle_Text.GetComponent<ContentSizeFitter>();
+        if (Main.EtapeTutoriel == 1)
+        {
+            GFX_Sleep.gameObject.SetActive(true);
+            GFX.gameObject.SetActive(false);
+        }
+        else
+        {
+            GFX_Sleep.gameObject.SetActive(false);
+            GFX.gameObject.SetActive(true);
+        }
+
         Physics2D.IgnoreCollision(ThisBox, BossBOX);
 
         Anim = GFX.GetComponent<Animator>();
@@ -25,7 +38,75 @@ public class Player_Mouvement : MonoBehaviour
     {
         Mouvement();
         Animation();
+        Text();
     }
+
+    #region Text
+    bool DejaFait;
+
+    void Text()
+    {
+        if (Main.EtapeTutoriel == 2 && DejaFait == false)
+        {
+            Bulle_Image.gameObject.SetActive(true);
+            Bulle_Text.gameObject.SetActive(true);
+            StartCoroutine(AfficherParole("What !? What i'm doing here !", 0.05f));
+            DejaFait = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (Finished == false)
+            {
+                //StopCoroutine(AfficherParole(TextToShow, 0.05f));
+                //Bulle_Text.text = TextToShow;
+            }
+            else
+            {
+                if (Bulle_Text.text != "")
+                {
+                    Bulle_Text.text = "";
+                    Bulle_Image.gameObject.SetActive(false);
+                    Main.EtapeTutoriel++;
+                    DejaFait = false;
+                }
+
+            }
+        }
+
+        Bulle_Image.rectTransform.sizeDelta = new Vector2(Bulle_Text.rectTransform.rect.width * Bulle_Text.rectTransform.localScale.x + 10, Bulle_Text.rectTransform.rect.height * Bulle_Text.rectTransform.localScale.y + 10);
+        if (Bulle_Text.rectTransform.rect.width >= 480)
+        {
+            SizeFilter.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
+        }
+        else
+        {
+            SizeFilter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+        }
+    }
+
+    public Image Bulle_Image;
+    public Text Bulle_Text;
+    ContentSizeFitter SizeFilter;
+    bool Finished;
+
+    IEnumerator AfficherParole(string Parole, float Speed)
+    {
+        Bulle_Text.text = null;
+        while (Parole.Length > 0)
+        {
+            yield return new WaitForSeconds(Speed);
+            Bulle_Text.text += Parole[0];
+            Parole = Parole.Substring(1);
+            Finished = false;
+            if (Parole.Length == 0)
+            {
+                Finished = true;
+            }
+        }
+    }
+
+    #endregion
 
     //this do all the player animation
 
@@ -33,6 +114,16 @@ public class Player_Mouvement : MonoBehaviour
 
     void Animation()
     {
+        if (Main.EtapeTutoriel == 1)
+        {
+            GFX_Sleep.gameObject.SetActive(true);
+            GFX.gameObject.SetActive(false);
+        }
+        else
+        {
+            GFX_Sleep.gameObject.SetActive(false);
+            GFX.gameObject.SetActive(true);
+        }
         if (Knocked <= 0)
         {
             if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && Player_Sword.Shield == false)
@@ -91,7 +182,10 @@ public class Player_Mouvement : MonoBehaviour
         if (Knocked <= 0)
         {
             ThisBox.enabled = true;
-            GFX.active = true;
+            if (Main.EtapeTutoriel != 1)
+            {
+                GFX.active = true;
+            }
 
             //Check if the user have pressed the touch Z 
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
@@ -177,7 +271,7 @@ public class Player_Mouvement : MonoBehaviour
         else
         {
             ThisBox.enabled = false;
-            if (Cooldown <= 0)
+            if (Cooldown <= 0 && Main.EtapeTutoriel != 1)
             {
                 if (GFX.active == true)
                 {
