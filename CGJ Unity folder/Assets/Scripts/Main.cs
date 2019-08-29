@@ -41,27 +41,27 @@ public class Main : MonoBehaviour
             if (EtapeTutoriel == 2)
             {
                 Tuto.gameObject.SetActive(true);
-                Tuto.text = "W,A,S, D or arrows keys for moving";
+                Tuto.text = "Use W, A, S, D or the arrow keys to move around.";
             }
             else if (EtapeTutoriel == 3)
             {
                 Tuto.gameObject.SetActive(true);
-                Tuto.text = "Left click for use the swords, Right click for use the shield.";
+                Tuto.text = "Use your left mouse button to swing your sword Use the right mouse button to block with your shield.";
             }
             else if (EtapeTutoriel == 4)
             {
                 Tuto.gameObject.SetActive(true);
-                Tuto.text = "Protect this fearful guys or you will die with him. Don't let those monster kill him !";
+                Tuto.text = "Your goal is to defend your old boss from these abomonations !";
             }
             else if (EtapeTutoriel == 5)
             {
                 Tuto.gameObject.SetActive(true);
-                Tuto.text = "This guys have an healt bar in the bottom of the screen, in the top you can see the nomber of wave you are and the remain monster to kill for reach the next one.";
+                Tuto.text = "Don't let the health bar at the bottom drain otherwise it will result in a game over /n kill all the monsters in the wave to move on to the next wave.";
             }
             else if (EtapeTutoriel == 6)
             {
                 Tuto.gameObject.SetActive(true);
-                Tuto.text = "Not all monster can be killed also easy that those. Some will need combination of attack for be killed. This guys will say you what's the combination but be careful i don't know if you can trust him.";
+                Tuto.text = "";
             }
             else
             {
@@ -73,7 +73,7 @@ public class Main : MonoBehaviour
             Tuto.gameObject.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Enter))
         {
             if (EtapeTutoriel == 4 || EtapeTutoriel == 5 || EtapeTutoriel == 6)
             {
@@ -188,7 +188,7 @@ public class Main : MonoBehaviour
     void UI()
     {
         WaveText.text = "Wave : " + Wave;
-        RemainMonster.text = "" + RemainsMonster + " Remains monster";
+        RemainMonster.text = "" + RemainsMonster + " Monsters Remain";
     }
 
     public GameObject Runners, DemonHead, RingDemon;
