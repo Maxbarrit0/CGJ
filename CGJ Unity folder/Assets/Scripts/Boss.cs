@@ -24,7 +24,7 @@ public class Boss : MonoBehaviour
     {
         if (Main.EtapeTutoriel == 3 && DejaFait == false)
         {
-            StartCoroutine(AfficherParole("AAAAAAAHHH! It's coming for us ! Please Kill those things I don’t wanna die! Here take my stuff and protect me. I don’t wanna die!", 0.01f));
+            StartCoroutine(AfficherParole("It's coming for us ! K-Kill those things I don’t wanna die! Here take my stuff and protect me. I don’t wanna die!", 0.01f));
             DejaFait = true;
         }
         SetSizeDialogue();
@@ -58,7 +58,7 @@ public class Boss : MonoBehaviour
     {
         if (Monster == "DemonHead")
         {
-            StartCoroutine(AfficherParole("Oh n-n-n-no-no ! He looks like his head needs to be bashed in with a sheild !", 0.01f));
+            StartCoroutine(AfficherParole("Oh n-n-n-no-no ! He looks like his head needs to be bashed in with a shield !", 0.01f));
             Main.Ennemy_Head = true;
             Occuped = true;
         }
