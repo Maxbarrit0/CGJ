@@ -24,7 +24,7 @@ public class Boss : MonoBehaviour
     {
         if (Main.EtapeTutoriel == 3 && DejaFait == false)
         {
-            StartCoroutine(AfficherParole("AAAAAAAHHH! It's coming for us ! Please Kill those things i don’t wanna die! Here take my stuff and protect me. I don’t wanna die!", 0.01f));
+            StartCoroutine(AfficherParole("AAAAAAAHHH! It's coming for us ! Please Kill those things I don’t wanna die! Here take my stuff and protect me. I don’t wanna die!", 0.01f));
             DejaFait = true;
         }
         SetSizeDialogue();
@@ -58,7 +58,7 @@ public class Boss : MonoBehaviour
     {
         if (Monster == "DemonHead")
         {
-            StartCoroutine(AfficherParole("OMG ! This head surely need to be smashed by a shield !", 0.01f));
+            StartCoroutine(AfficherParole("Oh n-n-n-no-no ! He looks like his head needs to be bashed in with a sheild !", 0.01f));
             Main.Ennemy_Head = true;
             Occuped = true;
         }
@@ -69,11 +69,10 @@ public class Boss : MonoBehaviour
             Occuped = true;
             if (r == 1)
             {
-                StartCoroutine(AfficherParole("OMG Not this one ! I don't remember what was the combination of this one... Mmm wait... Maybe Sword + Shields ?", 0.05f));
-            }
+                StartCoroutine(AfficherParole("Anyone but him ! It seems like combonations are more efficient, try hitting him with your sword then you shield.
             else if (r == 2)
             {
-                StartCoroutine(AfficherParole("This one need the shield and the sword to be killed ! Be careful !", 0.05f));
+                StartCoroutine(AfficherParole("Have mercy! Oh God save us!", 0.05f));
                 Main.Ennemy_Ring = true;
 
             }
