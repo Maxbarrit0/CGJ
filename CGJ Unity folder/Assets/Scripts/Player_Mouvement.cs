@@ -50,7 +50,7 @@ public class Player_Mouvement : MonoBehaviour
         {
             Bulle_Image.gameObject.SetActive(true);
             Bulle_Text.gameObject.SetActive(true);
-            StartCoroutine(AfficherParole("What !? What i'm doing here !", 0.05f));
+            StartCoroutine(AfficherParole("Where, Where am I? My old office building. Must've been a pretty crazy night", 0.05f));
             DejaFait = true;
         }
 
