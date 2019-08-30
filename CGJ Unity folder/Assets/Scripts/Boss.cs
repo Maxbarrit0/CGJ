@@ -69,7 +69,7 @@ public class Boss : MonoBehaviour
             Occuped = true;
             if (r == 1)
             {
-                StartCoroutine(AfficherParole("Anyone but him ! It seems like combonations are more efficient, try hitting him with your sword then you shield.
+                StartCoroutine(AfficherParole("Anyone but him ! It seems like combonations are more efficient, try hitting him with your sword then you shield.",0.01f));
             else if (r == 2)
             {
                 StartCoroutine(AfficherParole("Have mercy! Oh God save us!", 0.05f));
