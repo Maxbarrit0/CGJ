@@ -56,7 +56,7 @@ public class Main : MonoBehaviour
             else if (EtapeTutoriel == 5)
             {
                 Tuto.gameObject.SetActive(true);
-                Tuto.text = "Don't let the health bar at the bottom drain otherwise it will result in a game over /n kill all the monsters in the wave to move on to the next wave.";
+                Tuto.text = "Don't let the health bar at the bottom drain otherwise it will result in a game over kill all the monsters in the wave to move on to the next wave.";
             }
             else if (EtapeTutoriel == 6)
             {
@@ -113,7 +113,7 @@ public class Main : MonoBehaviour
             BG_2.gameObject.SetActive(true);
             BG_3.gameObject.SetActive(false);
         }
-        else
+        else if (Wave >= 15)
         {
             BG_1.gameObject.SetActive(true);
             BG_2.gameObject.SetActive(false);
