@@ -43,6 +43,7 @@ public class Player_Mouvement : MonoBehaviour
 
     #region Text
     bool DejaFait;
+    public Canvas Canvas_Dialogue;
 
     void Text()
     {
@@ -50,9 +51,56 @@ public class Player_Mouvement : MonoBehaviour
         {
             Bulle_Image.gameObject.SetActive(true);
             Bulle_Text.gameObject.SetActive(true);
+<<<<<<< HEAD
+            StartCoroutine(AfficherParole("Where, Where am I? My old office building. Must've been a pretty crazy night", 0.02f, false));
+=======
             StartCoroutine(AfficherParole("Where, Where am I? My old office building. Must've been a pretty crazy night", 0.05f));
+>>>>>>> 2f453d81a39a0838be9d0a31d64af5b17636a69c
             DejaFait = true;
         }
+        else if (Main.EtapeTutoriel == 10 && DejaFait == false)
+        {
+            Bulle_Image.gameObject.SetActive(true);
+            Bulle_Text.gameObject.SetActive(true);
+            StartCoroutine(AfficherParole("Yes ! We’ve made it to the top ! But where are the others ? Hey!!! Can anybody hear me!", 0.02f, false));
+            DejaFait = true;
+        }
+        else if (Main.EtapeTutoriel == 12 && DejaFait == false)
+        {
+            Bulle_Image.gameObject.SetActive(true);
+            Bulle_Text.gameObject.SetActive(true);
+            StartCoroutine(AfficherParole("You f***ing bastard!!! Who are you show yourself!", 0.007f, false));
+            DejaFait = true;
+        }
+        else if (Main.EtapeTutoriel == 14 && DejaFait == false)
+        {
+            Bulle_Image.gameObject.SetActive(true);
+            Bulle_Text.gameObject.SetActive(true);
+            StartCoroutine(AfficherParole("What ?! You’re that grim reaper huh?", 0.007f, false));
+            DejaFait = true;
+        }
+        else if (Main.EtapeTutoriel == 16 && DejaFait == false)
+        {
+            Bulle_Image.gameObject.SetActive(true);
+            Bulle_Text.gameObject.SetActive(true);
+            StartCoroutine(AfficherParole("Don’t mess with me!!! WHO ARE YOU AND WHAT YOU WANT FROM ME ?", 0.007f, false));
+            DejaFait = true;
+        }
+        else if (Main.EtapeTutoriel == 18 && DejaFait == false)
+        {
+            Bulle_Image.gameObject.SetActive(true);
+            Bulle_Text.gameObject.SetActive(true);
+            StartCoroutine(AfficherParole("WHA-", 0.1f, true));
+            DejaFait = true;
+        }
+        else if (Main.EtapeTutoriel == 20 && DejaFait == false)
+        {
+            Bulle_Image.gameObject.SetActive(true);
+            Bulle_Text.gameObject.SetActive(true);
+            StartCoroutine(AfficherParole("You !? What the f**k is going on? What is this? Why is this happening? Oh my god !", 0.001f, false));
+            DejaFait = true;
+        }
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -74,6 +122,7 @@ public class Player_Mouvement : MonoBehaviour
             }
         }
 
+        Canvas_Dialogue.transform.position = new Vector2(this.transform.position.x, this.transform.position.y + 0.255f);
         Bulle_Image.rectTransform.sizeDelta = new Vector2(Bulle_Text.rectTransform.rect.width * Bulle_Text.rectTransform.localScale.x + 10, Bulle_Text.rectTransform.rect.height * Bulle_Text.rectTransform.localScale.y + 10);
         if (Bulle_Text.rectTransform.rect.width >= 480)
         {
@@ -90,7 +139,7 @@ public class Player_Mouvement : MonoBehaviour
     ContentSizeFitter SizeFilter;
     bool Finished;
 
-    IEnumerator AfficherParole(string Parole, float Speed)
+    IEnumerator AfficherParole(string Parole, float Speed, bool Forced)
     {
         Bulle_Text.text = null;
         while (Parole.Length > 0)
@@ -102,6 +151,13 @@ public class Player_Mouvement : MonoBehaviour
             if (Parole.Length == 0)
             {
                 Finished = true;
+                if (Forced == true)
+                {
+                    Bulle_Text.text = "";
+                    Bulle_Image.gameObject.SetActive(false);
+                    Main.EtapeTutoriel++;
+                    DejaFait = false;
+                }
             }
         }
     }
@@ -122,7 +178,6 @@ public class Player_Mouvement : MonoBehaviour
         else
         {
             GFX_Sleep.gameObject.SetActive(false);
-            GFX.gameObject.SetActive(true);
         }
         if (Knocked <= 0)
         {

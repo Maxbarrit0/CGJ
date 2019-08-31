@@ -29,7 +29,7 @@ public class Heart : MonoBehaviour
     private void Update()
     {
         //set the position depending of the selection and the boss
-        transformRect.anchoredPosition = new Vector3(44 * (Selection - 1) - (22 * (Boss.Life - 1)), 10, 0);
+        transformRect.anchoredPosition = new Vector3(40 * (Selection - 1) - (20 * (Boss.Life - 1)), 10, 0);
         if (Boss.Life >= Selection)
         {
             Render.enabled = true;

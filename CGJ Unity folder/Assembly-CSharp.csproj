@@ -80,7 +80,9 @@
     <Compile Include="Assets\Scripts\EarthSpellForm.cs" />
     <Compile Include="Assets\Scripts\Ennemy.cs" />
     <Compile Include="Assets\Scripts\Ennemy_Combination.cs" />
+    <Compile Include="Assets\Scripts\Flocon.cs" />
     <Compile Include="Assets\Scripts\Heart.cs" />
+    <Compile Include="Assets\Scripts\IceSpell.cs" />
     <Compile Include="Assets\Scripts\Main.cs" />
     <Compile Include="Assets\Scripts\Player_Animation.cs" />
     <Compile Include="Assets\Scripts\Player_Mouvement.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="Assets\Scripts\RestartButton.cs" />
     <Compile Include="Assets\Scripts\SelectSpell.cs" />
     <Compile Include="Assets\Scripts\SpellDeliverMove.cs" />
+    <Compile Include="Assets\Scripts\Stalagmite.cs" />
     <None Include="Assets\Font\NotoSans - License.txt" />
     <None Include="Assets\Font\Oswald Bold - OFL.txt" />
     <None Include="Assets\Font\Anton OFL.txt" />

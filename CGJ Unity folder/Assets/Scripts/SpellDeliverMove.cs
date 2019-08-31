@@ -29,7 +29,21 @@ public class SpellDeliverMove : MonoBehaviour
         if (Actif == true)
         {
             this.gameObject.SetActive(false);
-            EarthSpellForm.ActifEarthSpell = true;
+            if (CurrentSpell == "Earth")
+            {
+                EarthSpellForm.ActifEarthSpell = true;
+            }
+            else
+            {
+                IceSpell.Activation_IceSpell = true;
+            }
         }
+    }
+
+    string CurrentSpell;
+
+    void SetSpell(string Spell)
+    {
+        CurrentSpell = Spell;
     }
 }

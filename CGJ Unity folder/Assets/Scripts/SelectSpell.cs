@@ -10,7 +10,7 @@ public class SelectSpell : MonoBehaviour
 
     private void Update()
     {
-        if (EarthSpell.EarthSpellUse == false)
+        if (EarthSpell.EarthSpellUse == false || IceSpell.IceSpellUse == false)
         {
             Cooldown -= 1 * Time.deltaTime;
         }
@@ -19,8 +19,20 @@ public class SelectSpell : MonoBehaviour
         {
             if (Cooldown <= 0)
             {
-                EarthSpell.EarthSpellUse = true;
-                Cooldown = MaxCooldown;
+                if (EarthSpellForm.ActifEarthSpell == true)
+                {
+                    EarthSpell.EarthSpellUse = true;
+                    Cooldown = 5;
+                }
+                else if (IceSpell.Activation_IceSpell == true)
+                {
+                    IceSpell.IceSpellUse = true;
+                    Cooldown = 2;
+                    Vector3 Mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Stalagmite.transform.position = Player.transform.position;
+                    Stalagmite.transform.up = new Vector3(Mouse.x - Stalagmite.transform.position.x, Mouse.y - Stalagmite.transform.position.y, 0);
+                    Instantiate(Stalagmite);
+                }
             }
         }
 
@@ -36,18 +48,39 @@ public class SelectSpell : MonoBehaviour
         }
         else if (Cooldown > 0)
         {
-            Image.fillAmount = Cooldown / MaxCooldown;
+            if (EarthSpellForm.ActifEarthSpell == true)
+            {
+                Image.fillAmount = Cooldown / 5;
+            }
+            else if (IceSpell.Activation_IceSpell == true)
+            {
+                Image.fillAmount = Cooldown / 1;
+            }
             Image.color = new Color32(255, 0, 0, 255);
         }
     }
+
+    public GameObject Player, Stalagmite;
 
     public void Select()
     {
 
         if (Cooldown <= 0)
         {
-            EarthSpell.EarthSpellUse = true;
-            Cooldown = MaxCooldown;
+            if (EarthSpellForm.ActifEarthSpell == true)
+            {
+                EarthSpell.EarthSpellUse = true;
+                Cooldown = 5;
+            }
+            else if (IceSpell.Activation_IceSpell == true)
+            {
+                Cooldown = 1;
+                Vector3 Mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Stalagmite.transform.position = Player.transform.position;
+                Stalagmite.transform.up = new Vector3(Mouse.x - Stalagmite.transform.position.x, Mouse.y - Stalagmite.transform.position.y, 0);
+                Instantiate(Stalagmite);
+
+            }
         }
     }
 }

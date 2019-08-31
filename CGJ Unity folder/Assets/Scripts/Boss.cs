@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour
 {
@@ -18,33 +19,82 @@ public class Boss : MonoBehaviour
     }
 
     public static bool Occuped = false;
+    public GameObject TextSpace;
     bool DejaFait;
 
     private void Update()
     {
+        if (Occuped == true && Finished == true)
+        {
+            TextSpace.gameObject.SetActive(true);
+        }
+        else
+        {
+            TextSpace.gameObject.SetActive(false);
+        }
+        if (Life >= 10)
+        {
+            Life = 10;
+        }
+
         if (Main.EtapeTutoriel == 3 && DejaFait == false)
         {
             StartCoroutine(AfficherParole("It's coming for us ! K-Kill those things I don’t wanna die! Here take my stuff and protect me. I don’t wanna die!", 0.01f));
             DejaFait = true;
         }
+        else if (Main.EtapeTutoriel == 11 && DejaFait == false)
+        {
+            StartCoroutine(AfficherParole("Well played my pawn. You’ve played my game well. Unfortunately, your friend there died.", 0.02f));
+            DejaFait = true;
+        }
+        else if (Main.EtapeTutoriel == 13 && DejaFait == false)
+        {
+            StartCoroutine(AfficherParole("Oh I’ve already showed myself already.", 0.02f));
+            DejaFait = true;
+        }
+        else if (Main.EtapeTutoriel == 15 && DejaFait == false)
+        {
+            StartCoroutine(AfficherParole("Wrong! Uh what pleasure it is to play this game…", 0.02f));
+            DejaFait = true;
+        }
+        else if (Main.EtapeTutoriel == 17 && DejaFait == false)
+        {
+            StartCoroutine(AfficherParole("Such a shame. I’ve been with you all along and you didn’t know me?", 0.02f));
+            DejaFait = true;
+        }
+        else if (Main.EtapeTutoriel == 19 && DejaFait == false)
+        {
+            StartCoroutine(AfficherParole("YES!!! I’m that useless pathetic bastard. Sadly, I don’t have the time to explain your misery to you. I still have billions of other games to play.", 0.02f));
+            DejaFait = true;
+        }
+        else if (Main.EtapeTutoriel == 21 && DejaFait == false)
+        {
+            StartCoroutine(AfficherParole("Ah yes. Your not the first one to go insane but I commend you for being the first one to survive until the end. Now my part of the bargain is fulfilled. You can go rot now. See you in hell.", 0.02f));
+            DejaFait = true;
+        }
+
+
         SetSizeDialogue();
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Finished == false)
-            {
-                //StopCoroutine(AfficherParole(TextToShow, 0.05f));
-                //Bulle_Text.text = TextToShow;
-            }
-            else
+            if (Finished == true)
             {
                 if (Bulle_Text.text != "")
                 {
                     Bulle_Text.text = "";
                     Bulle_Image.gameObject.SetActive(false);
-                    Main.EtapeTutoriel++;
+                    if (Main.EtapeTutoriel < 4 || Main.EtapeTutoriel >= 10)
+                    {
+                        Main.EtapeTutoriel++;
+
+                    }
                     if (Main.EtapeTutoriel == 4)
                     {
                         Main.Stop = false;
+                    }
+                    else if (Main.EtapeTutoriel == 22)
+                    {
+                        SceneManager.LoadScene("Credit");
                     }
                     Occuped = false;
                     DejaFait = false;
@@ -69,11 +119,51 @@ public class Boss : MonoBehaviour
             Occuped = true;
             if (r == 1)
             {
+<<<<<<< HEAD
+                StartCoroutine(AfficherParole("Have mercy! Oh God save us!", 0.05f));
+            }
+            else if (r == 2)
+            {
+                StartCoroutine(AfficherParole("Anyone but him ! It seems like combonations are more efficient, try hitting him with your Shield then Sword.", 0.01f));
+=======
                 StartCoroutine(AfficherParole("Anyone but him ! It seems like combonations are more efficient, try hitting him with your sword then you shield.",0.01f));
             else if (r == 2)
             {
                 StartCoroutine(AfficherParole("Have mercy! Oh God save us!", 0.05f));
+>>>>>>> 2f453d81a39a0838be9d0a31d64af5b17636a69c
                 Main.Ennemy_Ring = true;
+
+            }
+        }
+        else if (Monster == "EarthGolem")
+        {
+            int r = Random.Range(1, 2 + 1);
+
+            Occuped = true;
+            if (r == 1)
+            {
+                StartCoroutine(AfficherParole("OH this one is an eath monster ! He need to be damaged by your earth spell OH GOD", 0.05f));
+            }
+            else if (r == 2)
+            {
+                StartCoroutine(AfficherParole("OH No men be careful you need to damaged him by an earth spell and then use your shield on him !", 0.01f));
+                Main.EarthGolem = true;
+
+            }
+        }
+        else if (Monster == "IceDemon")
+        {
+            int r = Random.Range(1, 2 + 1);
+
+            Occuped = true;
+            if (r == 1)
+            {
+                StartCoroutine(AfficherParole("OH my god this one is an ice monster ! He need to be damaged by your ice spell OH GOD", 0.01f));
+            }
+            else if (r == 2)
+            {
+                StartCoroutine(AfficherParole("Fast ! Damaged it by your ice spell and smash it !", 0.001f));
+                Main.IceDemon = true;
 
             }
         }
@@ -81,7 +171,7 @@ public class Boss : MonoBehaviour
 
     #region Dialogue algorithme // Trying to do aglorithm dialogue
 
-    bool Finished;
+    public static bool Finished;
     ContentSizeFitter SizeFilter;
     public Image Bulle_Image;
     public Text Bulle_Text;
@@ -109,6 +199,7 @@ public class Boss : MonoBehaviour
             Bulle_Text.text += Parole[0];
             Parole = Parole.Substring(1);
             Finished = false;
+            Occuped = true;
             if (Parole.Length == 0)
             {
                 Finished = true;

@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
-    public static bool Ennemy_Head, Ennemy_Ring;
+    public static bool Ennemy_Head, Ennemy_Ring, EarthGolem, IceDemon;
     public static bool DoorOpen;
     public GameObject BG_1, BG_2, BG_3;
 
@@ -18,8 +18,8 @@ public class Main : MonoBehaviour
     //The gameobject that will be spawn
 
     public static int Wave = 1;
-    public static int RemainsMonster = 20, RemainsMonsterToSummon = 20;
-    public GameObject Button_Earth, Cadre_Earth, Icon_Earth, Player, Degat;
+    public static int RemainsMonster = 4, RemainsMonsterToSummon = 4;
+    public GameObject Button_Earth, Cadre_Earth, Icon_Earth, Icon_Ice, Player, Degat;
     public Text Degat_Text, Tuto;
     public Degat ScriptDegat;
     public static bool Stop = true;
@@ -28,6 +28,11 @@ public class Main : MonoBehaviour
 
     private void Update()
     {
+        if (Wave >= 30 && Stop == false)
+        {
+            EtapeTutoriel = 10;
+            Stop = true;
+        }
         if (EtapeTutoriel == 1)
         {
             MouvementScriptPlayer.enabled = false;
@@ -46,17 +51,29 @@ public class Main : MonoBehaviour
             else if (EtapeTutoriel == 3)
             {
                 Tuto.gameObject.SetActive(true);
+<<<<<<< HEAD
+                Tuto.text = "Use your left mouse button to swing your swords, use the rights one to block with your shields";
+=======
                 Tuto.text = "Use your left mouse button to swing your sword Use the right mouse button to block with your shield.";
+>>>>>>> 2f453d81a39a0838be9d0a31d64af5b17636a69c
             }
             else if (EtapeTutoriel == 4)
             {
                 Tuto.gameObject.SetActive(true);
+<<<<<<< HEAD
+                Tuto.text = "Your goal is to defend your old boss from these abommination";
+=======
                 Tuto.text = "Your goal is to defend your old boss from these abomonations !";
+>>>>>>> 2f453d81a39a0838be9d0a31d64af5b17636a69c
             }
             else if (EtapeTutoriel == 5)
             {
                 Tuto.gameObject.SetActive(true);
+<<<<<<< HEAD
+                Tuto.text = "Don't let the healt bar at the bottom drain otherwise it will result in a game over. kill all the monster in the wave to move on to the next wave";
+=======
                 Tuto.text = "Don't let the health bar at the bottom drain otherwise it will result in a game over kill all the monsters in the wave to move on to the next wave.";
+>>>>>>> 2f453d81a39a0838be9d0a31d64af5b17636a69c
             }
             else if (EtapeTutoriel == 6)
             {
@@ -81,7 +98,7 @@ public class Main : MonoBehaviour
             }
         }
 
-        if (Player.transform.position.x < 9 && EarthSpellForm.ActifEarthSpell == true && Wave == 5)
+        if (Player.transform.position.x < 9 && (EarthSpellForm.ActifEarthSpell == true || IceSpell.Activation_IceSpell == true) && Wave == 5)
         {
             Wave++;
             RemainsMonster = 5 + Wave;
@@ -95,11 +112,18 @@ public class Main : MonoBehaviour
             Cadre_Earth.gameObject.SetActive(true);
             Icon_Earth.gameObject.SetActive(true);
         }
+        else if (IceSpell.Activation_IceSpell == true)
+        {
+            Button_Earth.gameObject.SetActive(true);
+            Cadre_Earth.gameObject.SetActive(true);
+            Icon_Ice.gameObject.SetActive(true);
+        }
         else
         {
             Button_Earth.gameObject.SetActive(false);
             Cadre_Earth.gameObject.SetActive(false);
             Icon_Earth.gameObject.SetActive(false);
+            Icon_Ice.gameObject.SetActive(false);
         }
         if (Wave >= 10)
         {
@@ -126,16 +150,8 @@ public class Main : MonoBehaviour
             {
                 Wave++;
                 ScriptDegat.Positif = true;
-                if (Boss.Life == 9)
-                {
-                    Boss.Life += 1;
-                    Degat_Text.text = "+ 1 !!!";
-                }
-                else if (Boss.Life < 10)
-                {
-                    Boss.Life += 2;
-                    Degat_Text.text = "+ 2 !!!";
-                }
+                Boss.Life += 2;
+                Degat_Text.text = "+ 2 !!!";
                 ScriptDegat.Positif = false;
                 DoorOpen = true;
                 Instantiate(Degat);
@@ -148,16 +164,8 @@ public class Main : MonoBehaviour
                 ScriptDegat.Positif = true;
                 Instantiate(Degat);
                 ScriptDegat.Positif = false;
-                if (Boss.Life == 9)
-                {
-                    Boss.Life += 1;
-                    Degat_Text.text = "+ 1 !!!";
-                }
-                else if (Boss.Life < 10)
-                {
-                    Boss.Life += 2;
-                    Degat_Text.text = "+ 2 !!!";
-                }
+                Boss.Life += 2;
+                Degat_Text.text = "+ 2 !!!";
                 RemainsMonster = 5 + Wave;
                 RemainsMonsterToSummon = 5 + Wave;
             }
@@ -191,12 +199,17 @@ public class Main : MonoBehaviour
         RemainMonster.text = "" + RemainsMonster + " Monsters Remain";
     }
 
-    public GameObject Runners, DemonHead, RingDemon;
+    public GameObject Runners, DemonHead, RingDemon, EarthGolemG, IceDemonG;
 
     void Spawning_Mob()
     {
         int MonsterChoosing = 1;
-        if (Wave > 2)
+        if (EarthSpellForm.ActifEarthSpell == true || IceSpell.Activation_IceSpell == true)
+        {
+            MonsterChoosing = Random.Range(1, 4 + 1);
+
+        }
+        else if (Wave > 2)
         {
             MonsterChoosing = Random.Range(1, 3 + 1);
         }
@@ -216,6 +229,17 @@ public class Main : MonoBehaviour
         else if (MonsterChoosing == 2)
         {
             MonsterSpawn(DemonHead);
+        }
+        else if (MonsterChoosing == 3 && (EarthSpellForm.ActifEarthSpell == true || IceSpell.Activation_IceSpell == true))
+        {
+            if (EarthSpellForm.ActifEarthSpell == true)
+            {
+                MonsterSpawn(EarthGolemG);
+            }
+            else if (IceSpell.Activation_IceSpell == true)
+            {
+                MonsterSpawn(IceDemonG);
+            }
         }
         else
         {

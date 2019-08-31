@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Ennemy : MonoBehaviour
 {
@@ -34,13 +35,19 @@ public class Ennemy : MonoBehaviour
 
     private void Update()
     {
+        GeleAnimation();
+        GeleTime -= 1 * Time.deltaTime;
         Knocked -= 1 * Time.deltaTime;
 
         //Make the gameobject look Satan
         this.transform.up = Satan.transform.position - this.transform.position;
 
         //Make the gameobject move into Satan
-        if (Knocked <= 0)
+        if (GeleTime > 0)
+        {
+            Rigid.velocity = new Vector2(0, 0);
+        }
+        else if (Knocked <= 0)
         {
             Rigid.velocity = transform.up * LocalSpeed;
         }
@@ -80,17 +87,41 @@ public class Ennemy : MonoBehaviour
     }
 
     Animator Anim;
+    public Ennemy_Combination CombinationScript;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "EarthArea")
         {
+            CombinationScript.EarthDamaged = true;
             Anim.speed = 0.25f;
             LocalSpeed = Speed * 0.25f;
         }
     }
 
+    float CoolDownBeforeRespawn;
+    public GameObject Flocon;
+
+    void GeleAnimation()
+    {
+        if (GeleTime > 0)
+        {
+            CoolDownBeforeRespawn -= 1 * Time.deltaTime;
+            if (CoolDownBeforeRespawn <= 0)
+            {
+                Flocon.transform.position = this.transform.position;
+                Instantiate(Flocon);
+            }
+        }
+    }
+
     public float ForceWhenKnocked, Durée;
     public Vector2 Pos, Velocity;
-    public float Knocked;
+    public float Knocked, GeleTime;
+
+    public void Gele(float Time)
+    {
+        CombinationScript.IceDamaged = true;
+        GeleTime = Time;
+    }
 }

@@ -7,13 +7,17 @@ public class Ennemy_Combination : MonoBehaviour
 
     CircleCollider2D ThisCollider;
 
-    public enum NameMonster { None, DemonHead, RingDemon }
+    public enum NameMonster { None, DemonHead, RingDemon, EarthGolem, IceDemon }
 
     public NameMonster Name;
 
     public enum TypeOfMonster { Normal, Tutorial }
 
     public TypeOfMonster TypeOfMonstre;
+
+    public enum ElementMonster { None, Earth, Ice }
+
+    public ElementMonster Element;
 
     public enum TypeAttack { Smash, Protecting, None }
 
@@ -23,23 +27,63 @@ public class Ennemy_Combination : MonoBehaviour
 
     string CurrentState;
 
+    public bool EarthDamaged, IceDamaged;
+
     public GameObject BossG;
     Ennemy Script;
 
     private void Start()
     {
-        if (Name.ToString() == "DemonHead" && Boss.Occuped == false && Main.Ennemy_Head == false)
+        if (Name.ToString() == "DemonHead" && Boss.Finished == true && Main.Ennemy_Head == false)
         {
             BossG.SendMessage("NewMonster", "DemonHead");
         }
-        else if (Name.ToString() == "RingDemon" && Boss.Occuped == false && Main.Ennemy_Ring == false)
+        else if (Name.ToString() == "RingDemon" && Boss.Finished == true && Main.Ennemy_Ring == false)
         {
             BossG.SendMessage("NewMonster", "RingDemon");
+        }
+        else if (Name.ToString() == "EarthGolem" && Boss.Finished == true && Main.EarthGolem == false)
+        {
+            BossG.SendMessage("NewMonster", "EarthGolem");
+        }
+        else if (Name.ToString() == "IceDemon" && Boss.Finished == true && Main.IceDemon == false)
+        {
+            BossG.SendMessage("NewMonster", "IceDemon");
         }
         ThisCollider = this.GetComponent<CircleCollider2D>();
         Script = this.GetComponent<Ennemy>();
         CurrentState = TypeAttackOne.ToString();
     }
+
+    private void Update()
+    {
+        if (CurrentState.ToString() == "None")
+        {
+            if (Element.ToString() == "None")
+            {
+                Main.RemainsMonster--;
+                Mort.transform.position = this.transform.position;
+                Instantiate(Mort);
+                Destroy(this.gameObject);
+            }
+            else if (Element.ToString() == "Earth" && EarthDamaged == true)
+            {
+                Main.RemainsMonster--;
+                Mort.transform.position = this.transform.position;
+                Instantiate(Mort);
+                Destroy(this.gameObject);
+            }
+            else if (Element.ToString() == "Ice" && IceDamaged == true)
+            {
+                Main.RemainsMonster--;
+                Mort.transform.position = this.transform.position;
+                Instantiate(Mort);
+                Destroy(this.gameObject);
+            }
+        }
+    }
+
+    public GameObject Mort;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -48,6 +92,8 @@ public class Ennemy_Combination : MonoBehaviour
             if (collision.gameObject.tag == "Sword") // if he is smahing he die
             {
                 Main.RemainsMonster--;
+                Mort.transform.position = this.transform.position;
+                Instantiate(Mort);
                 Destroy(this.gameObject);
             }
             else if (collision.gameObject.tag == "Shield")
@@ -68,26 +114,17 @@ public class Ennemy_Combination : MonoBehaviour
             {
                 if (CurrentState == TypeAttackOne.ToString())
                 {
-                    if (TypeAttackTwo.ToString() == "None")
-                    {
-                        Main.RemainsMonster--;
-                        Destroy(this.gameObject);
-                    }
+
                     CurrentState = TypeAttackTwo.ToString();
                 }
                 else if (CurrentState == TypeAttackTwo.ToString())
                 {
-                    if (TypeAttackThree.ToString() == "None")
-                    {
-                        Main.RemainsMonster--;
-                        Destroy(this.gameObject);
-                    }
                     CurrentState = TypeAttackThree.ToString();
                 }
                 else if (CurrentState == TypeAttackThree.ToString())
                 {
-                    Main.RemainsMonster--;
-                    Destroy(this.gameObject);
+                    CurrentState = "None";
+
                 }
             }
             else if (collision.gameObject.tag == "Sword")
@@ -107,26 +144,15 @@ public class Ennemy_Combination : MonoBehaviour
                 }
                 if (CurrentState == TypeAttackOne.ToString())
                 {
-                    if (TypeAttackTwo.ToString() == "None")
-                    {
-                        Main.RemainsMonster--;
-                        Destroy(this.gameObject);
-                    }
                     CurrentState = TypeAttackTwo.ToString();
                 }
                 else if (CurrentState == TypeAttackTwo.ToString())
                 {
-                    if (TypeAttackThree.ToString() == "None")
-                    {
-                        Main.RemainsMonster--;
-                        Destroy(this.gameObject);
-                    }
                     CurrentState = TypeAttackThree.ToString();
                 }
                 else if (CurrentState == TypeAttackThree.ToString())
                 {
-                    Main.RemainsMonster--;
-                    Destroy(this.gameObject);
+                    CurrentState = "None";
                 }
             }
             else if (collision.gameObject.tag == "Shield")
