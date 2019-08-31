@@ -16,6 +16,11 @@ public class Boss : MonoBehaviour
         {
             StartCoroutine(AfficherParole("HELP! Anyone?! Someone?! HELP!", 0.03f));
         }
+        else
+        {
+            Bulle_Text.text = null;
+            Bulle_Image.gameObject.SetActive(false);
+        }
     }
 
     public static bool Occuped = false;
@@ -119,19 +124,16 @@ public class Boss : MonoBehaviour
             Occuped = true;
             if (r == 1)
             {
-<<<<<<< HEAD
                 StartCoroutine(AfficherParole("Have mercy! Oh God save us!", 0.05f));
             }
             else if (r == 2)
             {
-                StartCoroutine(AfficherParole("Anyone but him ! It seems like combonations are more efficient, try hitting him with your Shield then Sword.", 0.01f));
-=======
-                StartCoroutine(AfficherParole("Anyone but him ! It seems like combonations are more efficient, try hitting him with your sword then you shield.",0.01f));
+                StartCoroutine(AfficherParole("Anyone but him ! It seems like combinations are more efficient, try hitting him with your Shield then Sword.", 0.01f));
+                Main.Ennemy_Ring = true;
+            }
             else if (r == 2)
             {
                 StartCoroutine(AfficherParole("Have mercy! Oh God save us!", 0.05f));
->>>>>>> 2f453d81a39a0838be9d0a31d64af5b17636a69c
-                Main.Ennemy_Ring = true;
 
             }
         }
@@ -168,6 +170,7 @@ public class Boss : MonoBehaviour
             }
         }
     }
+
 
     #region Dialogue algorithme // Trying to do aglorithm dialogue
 

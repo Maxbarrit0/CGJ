@@ -19,7 +19,8 @@ public class Main : MonoBehaviour
 
     public static int Wave = 1;
     public static int RemainsMonster = 4, RemainsMonsterToSummon = 4;
-    public GameObject Button_Earth, Cadre_Earth, Icon_Earth, Icon_Ice, Player, Degat;
+    public GameObject Player, Degat;
+    public RectTransform Button_Ice, Cadre_Ice, Icon_Ice, Button_Earth, Cadre_Earth, Icon_Earth;
     public Text Degat_Text, Tuto;
     public Degat ScriptDegat;
     public static bool Stop = true;
@@ -28,7 +29,29 @@ public class Main : MonoBehaviour
 
     private void Update()
     {
-        if (Wave >= 30 && Stop == false)
+        if (EarthSpellForm.ActifEarthSpell == true && IceSpell.Activation_IceSpell == false)
+        {
+            Button_Earth.anchoredPosition = new Vector3(0, 55.3999f, 0);
+            Cadre_Earth.anchoredPosition = new Vector3(0, 53.04004f, 0);
+            Icon_Earth.anchoredPosition = new Vector3(0, 58.47412f, 0);
+
+        }
+        else if (EarthSpellForm.ActifEarthSpell == false && IceSpell.Activation_IceSpell == true)
+        {
+            Button_Ice.anchoredPosition = new Vector3(0, 55.3999f, 0);
+            Cadre_Ice.anchoredPosition = new Vector3(0, 53.04004f, 0);
+            Icon_Ice.anchoredPosition = new Vector3(0, 58.47412f, 0);
+        }
+        else if (EarthSpellForm.ActifEarthSpell == false && IceSpell.Activation_IceSpell == true)
+        {
+            Button_Ice.anchoredPosition = new Vector3(-18, 55.3999f, 0);
+            Cadre_Ice.anchoredPosition = new Vector3(-18, 53.04004f, 0);
+            Icon_Ice.anchoredPosition = new Vector3(-18, 58.47412f, 0);
+            Button_Earth.anchoredPosition = new Vector3(-18, 55.3999f, 0);
+            Cadre_Earth.anchoredPosition = new Vector3(-18, 53.04004f, 0);
+            Icon_Earth.anchoredPosition = new Vector3(-18, 58.47412f, 0);
+        }
+        if (Wave >= 20 && Stop == false)
         {
             EtapeTutoriel = 10;
             Stop = true;
@@ -51,29 +74,19 @@ public class Main : MonoBehaviour
             else if (EtapeTutoriel == 3)
             {
                 Tuto.gameObject.SetActive(true);
-<<<<<<< HEAD
-                Tuto.text = "Use your left mouse button to swing your swords, use the rights one to block with your shields";
-=======
                 Tuto.text = "Use your left mouse button to swing your sword Use the right mouse button to block with your shield.";
->>>>>>> 2f453d81a39a0838be9d0a31d64af5b17636a69c
             }
             else if (EtapeTutoriel == 4)
             {
                 Tuto.gameObject.SetActive(true);
-<<<<<<< HEAD
                 Tuto.text = "Your goal is to defend your old boss from these abommination";
-=======
-                Tuto.text = "Your goal is to defend your old boss from these abomonations !";
->>>>>>> 2f453d81a39a0838be9d0a31d64af5b17636a69c
+
             }
             else if (EtapeTutoriel == 5)
             {
                 Tuto.gameObject.SetActive(true);
-<<<<<<< HEAD
                 Tuto.text = "Don't let the healt bar at the bottom drain otherwise it will result in a game over. kill all the monster in the wave to move on to the next wave";
-=======
-                Tuto.text = "Don't let the health bar at the bottom drain otherwise it will result in a game over kill all the monsters in the wave to move on to the next wave.";
->>>>>>> 2f453d81a39a0838be9d0a31d64af5b17636a69c
+
             }
             else if (EtapeTutoriel == 6)
             {
@@ -90,7 +103,7 @@ public class Main : MonoBehaviour
             Tuto.gameObject.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Enter))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (EtapeTutoriel == 4 || EtapeTutoriel == 5 || EtapeTutoriel == 6)
             {
@@ -112,41 +125,58 @@ public class Main : MonoBehaviour
             Cadre_Earth.gameObject.SetActive(true);
             Icon_Earth.gameObject.SetActive(true);
         }
-        else if (IceSpell.Activation_IceSpell == true)
-        {
-            Button_Earth.gameObject.SetActive(true);
-            Cadre_Earth.gameObject.SetActive(true);
-            Icon_Ice.gameObject.SetActive(true);
-        }
         else
         {
             Button_Earth.gameObject.SetActive(false);
             Cadre_Earth.gameObject.SetActive(false);
             Icon_Earth.gameObject.SetActive(false);
+        }
+
+        if (IceSpell.Activation_IceSpell == true)
+        {
+            Cadre_Ice.gameObject.SetActive(true);
+            Button_Ice.gameObject.SetActive(true);
+            Icon_Ice.gameObject.SetActive(true);
+        }
+        else
+        {
+            Cadre_Ice.gameObject.SetActive(false);
+            Button_Ice.gameObject.SetActive(false);
             Icon_Ice.gameObject.SetActive(false);
         }
+
         if (Wave >= 10)
         {
             BG_1.gameObject.SetActive(false);
             BG_2.gameObject.SetActive(false);
             BG_3.gameObject.SetActive(true);
+            Red.gameObject.SetActive(true);
+            Green.SetActive(false);
+            Grey.SetActive(false);
         }
         else if (Wave >= 5)
         {
             BG_1.gameObject.SetActive(false);
             BG_2.gameObject.SetActive(true);
             BG_3.gameObject.SetActive(false);
+            Red.gameObject.SetActive(false);
+            Green.SetActive(false);
+            Grey.SetActive(true);
         }
-        else if (Wave >= 15)
+        else if (Wave < 5)
         {
             BG_1.gameObject.SetActive(true);
             BG_2.gameObject.SetActive(false);
             BG_3.gameObject.SetActive(false);
+            Red.gameObject.SetActive(false);
+            Green.SetActive(true);
+            Grey.SetActive(false);
         }
+
         UI();
         if (RemainsMonster <= 0 && DoorOpen == false)
         {
-            if (Wave == 4)
+            if (Wave == 4 || Wave == 9)
             {
                 Wave++;
                 ScriptDegat.Positif = true;
@@ -246,7 +276,7 @@ public class Main : MonoBehaviour
             MonsterSpawn(RingDemon);
         }
 
-        if (EtapeTutoriel >= 7)
+        if (EtapeTutoriel >= 6)
         {
             //Set the time for a new monster to spawn
             cooldownOfRespawn = Random.Range(1, 2 + 1);
@@ -282,4 +312,6 @@ public class Main : MonoBehaviour
         //Create the monster in the scene
         Instantiate(Monster);
     }
+
+    public GameObject Green, Grey, Red;
 }

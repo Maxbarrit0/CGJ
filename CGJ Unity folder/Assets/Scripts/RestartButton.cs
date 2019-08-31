@@ -10,8 +10,10 @@ public class RestartButton : MonoBehaviour
     {
         SceneManager.LoadScene("Room");
         Main.Wave = 1;
-        Main.RemainsMonster = 10;
-        Main.RemainsMonsterToSummon = 10;
+        Main.RemainsMonster = 5;
+        Main.RemainsMonsterToSummon = 5;
+        EarthSpellForm.ActifEarthSpell = false;
+        IceSpell.Activation_IceSpell = false;
         Boss.Life = 5;
     }
 }

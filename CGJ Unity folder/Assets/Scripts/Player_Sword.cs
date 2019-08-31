@@ -38,7 +38,7 @@ public class Player_Sword : MonoBehaviour
             Gameobject_Shield.transform.position = new Vector3(transform.position.x + 1 * LengthOfArms, transform.position.y, 0);
 
             //The rotation of the gameobject will look at the right
-            Gameobject_Shield.transform.rotation = Quaternion.Euler(0, 0, -90);
+            Gameobject_Shield.transform.rotation = Quaternion.Euler(0, 0, 90);
         }
         else if (Player_Mouvement.CurrentDirection == "L")
         {
@@ -51,23 +51,23 @@ public class Player_Sword : MonoBehaviour
         {
 
             Gameobject_Shield.transform.position = new Vector3(transform.position.x, transform.position.y + 1.6f * LengthOfArms, 0);
-            Gameobject_Shield.transform.rotation = Quaternion.Euler(0, 0, 0);
+            Gameobject_Shield.transform.rotation = Quaternion.Euler(0, 0, 180);
 
         }
         else if (Player_Mouvement.CurrentDirection == "D")
         {
             Gameobject_Shield.transform.position = new Vector3(transform.position.x, transform.position.y - 1.9f * LengthOfArms, 0);
-            Gameobject_Shield.transform.rotation = Quaternion.Euler(0, 0, 180);
+            Gameobject_Shield.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (Player_Mouvement.CurrentDirection == "UR")
         {
             Gameobject_Shield.transform.position = new Vector3(transform.position.x + 0.8f * LengthOfArms, transform.position.y + 1.4f * LengthOfArms, 0);
-            Gameobject_Shield.transform.rotation = Quaternion.Euler(0, 0, -45);
+            Gameobject_Shield.transform.rotation = Quaternion.Euler(0, 0, 180 - 45);
         }
         else if (Player_Mouvement.CurrentDirection == "UL")
         {
             Gameobject_Shield.transform.position = new Vector3(transform.position.x - 0.8f * LengthOfArms, transform.position.y + 1.4f * LengthOfArms, 0);
-            Gameobject_Shield.transform.rotation = Quaternion.Euler(0, 0, -135);
+            Gameobject_Shield.transform.rotation = Quaternion.Euler(0, 0, 180 + 45);
         }
         else if (Player_Mouvement.CurrentDirection == "DL")
         {
@@ -77,7 +77,7 @@ public class Player_Sword : MonoBehaviour
         else if (Player_Mouvement.CurrentDirection == "DR")
         {
             Gameobject_Shield.transform.position = new Vector3(transform.position.x + 0.8f * LengthOfArms, transform.position.y - 1.3f * LengthOfArms, 0);
-            Gameobject_Shield.transform.rotation = Quaternion.Euler(0, 0, -135);
+            Gameobject_Shield.transform.rotation = Quaternion.Euler(0, 0, 45);
         }
 
     }

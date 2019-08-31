@@ -51,11 +51,7 @@ public class Player_Mouvement : MonoBehaviour
         {
             Bulle_Image.gameObject.SetActive(true);
             Bulle_Text.gameObject.SetActive(true);
-<<<<<<< HEAD
             StartCoroutine(AfficherParole("Where, Where am I? My old office building. Must've been a pretty crazy night", 0.02f, false));
-=======
-            StartCoroutine(AfficherParole("Where, Where am I? My old office building. Must've been a pretty crazy night", 0.05f));
->>>>>>> 2f453d81a39a0838be9d0a31d64af5b17636a69c
             DejaFait = true;
         }
         else if (Main.EtapeTutoriel == 10 && DejaFait == false)
@@ -76,7 +72,7 @@ public class Player_Mouvement : MonoBehaviour
         {
             Bulle_Image.gameObject.SetActive(true);
             Bulle_Text.gameObject.SetActive(true);
-            StartCoroutine(AfficherParole("What ?! You’re that grim reaper huh?", 0.007f, false));
+            StartCoroutine(AfficherParole("What ?! ", 0.007f, false));
             DejaFait = true;
         }
         else if (Main.EtapeTutoriel == 16 && DejaFait == false)
@@ -226,7 +222,7 @@ public class Player_Mouvement : MonoBehaviour
     public float MaxSpeed, Acceleration;
     public float Decceleration;
 
-    public static string CurrentDirection;
+    public static string CurrentDirection = "D";
     public static bool X_Plus, X_Moin, Y_Plus, Y_Moins;
 
     private void Mouvement()

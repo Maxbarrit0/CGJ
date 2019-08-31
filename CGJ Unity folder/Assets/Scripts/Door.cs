@@ -14,22 +14,22 @@ public class Door : MonoBehaviour
         {
             if (Main.DoorOpen == true && this.transform.position.y < 4.5f)
             {
-                this.transform.DOMoveY(5, 1);
+                this.transform.DOMoveY(6, 1);
             }
             else if (Main.DoorOpen == false && this.transform.position.y > 4)
             {
-                this.transform.DOMoveY(3.5f, 1);
+                this.transform.DOMoveY(2.5f, 1);
             }
         }
         else if (Direction == "D")
         {
             if (Main.DoorOpen == true && this.transform.position.y > -4.5f)
             {
-                this.transform.DOMoveY(-5, 1);
+                this.transform.DOMoveY(-6, 1);
             }
             else if (Main.DoorOpen == false && this.transform.position.y < -4)
             {
-                this.transform.DOMoveY(-3.5f, 1);
+                this.transform.DOMoveY(-2.5f, 1);
             }
         }
     }

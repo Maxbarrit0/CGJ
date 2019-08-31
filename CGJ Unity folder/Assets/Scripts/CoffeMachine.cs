@@ -14,6 +14,16 @@ public class CoffeMachine : MonoBehaviour
         SpellDeliverRender = SpellDeliver.GetComponent<SpriteRenderer>();
     }
 
+    private void Update()
+    {
+        if (Main.DoorOpen == false)
+        {
+            Actif = true;
+        }
+    }
+
+    public SpellDeliverMove Scripts;
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (Actif == true)
@@ -21,21 +31,20 @@ public class CoffeMachine : MonoBehaviour
             Text.gameObject.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                SpellDeliver.gameObject.SetActive(true);
-                int r = Random.Range(1, 2 + 1);
+                Actif = false;
+                int r = 1;
 
                 if (r == 1)
                 {
                     SpellDeliverRender.sprite = Earth;
-                    SpellDeliver.SendMessage("SetSpell", "Earth");
+                    Scripts.CurrentSpell = "Earth";
                 }
                 else
                 {
                     SpellDeliverRender.sprite = Ice;
-                    SpellDeliver.SendMessage("SetSpell", "Ice");
-
+                    Scripts.CurrentSpell = "Ice";
                 }
-
+                Instantiate(SpellDeliverRender);
             }
         }
         else

@@ -10,7 +10,7 @@ public class SpellDeliverMove : MonoBehaviour
     void Start()
     {
         Speed = Random.Range(0.5f, 0.7f + 1);
-        this.transform.DOLocalMove(new Vector3(Random.Range(-1, 1), -2, 0), Speed);
+        this.transform.DOLocalMove(new Vector3(Random.Range(-1, 1) + 30.37f, -2 + 5.56f, 0), Speed);
         this.transform.DOScale(new Vector3(0.2f, 0.2f), Speed);
         this.transform.DORotate(new Vector3(0, 0, Random.Range(-180, 180)), Speed);
         StartCoroutine(SetActif());
@@ -24,7 +24,7 @@ public class SpellDeliverMove : MonoBehaviour
         Actif = true;
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (Actif == true)
         {
@@ -40,9 +40,9 @@ public class SpellDeliverMove : MonoBehaviour
         }
     }
 
-    string CurrentSpell;
+    public string CurrentSpell;
 
-    void SetSpell(string Spell)
+    public void SetSpell(string Spell)
     {
         CurrentSpell = Spell;
     }
