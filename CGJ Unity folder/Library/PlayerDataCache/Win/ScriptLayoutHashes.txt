@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-/Users/stephanebosso/Desktop/Hell's Point PC/CGJ Unity folder.exe
+/Users/stephanebosso/Downloads/CGJ/CGJ Unity folder/The game/CGJ Unity folder.exe
 SceneListBegin?
 Assets/Scenes/Title.unity
 Assets/Scenes/Room.unity

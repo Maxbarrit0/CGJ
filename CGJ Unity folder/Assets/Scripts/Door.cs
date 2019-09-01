@@ -18,7 +18,7 @@ public class Door : MonoBehaviour
             }
             else if (Main.DoorOpen == false && this.transform.position.y > 4)
             {
-                this.transform.DOMoveY(2.5f, 1);
+                this.transform.DOMoveY(3.5f, 1);
             }
         }
         else if (Direction == "D")
@@ -29,7 +29,7 @@ public class Door : MonoBehaviour
             }
             else if (Main.DoorOpen == false && this.transform.position.y < -4)
             {
-                this.transform.DOMoveY(-2.5f, 1);
+                this.transform.DOMoveY(-3.5f, 1);
             }
         }
     }

@@ -31,19 +31,32 @@ public class CoffeMachine : MonoBehaviour
             Text.gameObject.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Actif = false;
-                int r = 1;
-
-                if (r == 1)
+                if (IceSpell.Activation_IceSpell == true)
                 {
                     SpellDeliverRender.sprite = Earth;
                     Scripts.CurrentSpell = "Earth";
                 }
-                else
+                else if (EarthSpellForm.ActifEarthSpell == true)
                 {
                     SpellDeliverRender.sprite = Ice;
                     Scripts.CurrentSpell = "Ice";
                 }
+                else
+                {
+                    int r = 1;
+
+                    if (r == 1)
+                    {
+                        SpellDeliverRender.sprite = Earth;
+                        Scripts.CurrentSpell = "Earth";
+                    }
+                    else
+                    {
+                        SpellDeliverRender.sprite = Ice;
+                        Scripts.CurrentSpell = "Ice";
+                    }
+                }
+                Actif = false;
                 Instantiate(SpellDeliverRender);
             }
         }

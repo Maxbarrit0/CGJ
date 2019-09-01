@@ -226,7 +226,15 @@ public class Main : MonoBehaviour
     void UI()
     {
         WaveText.text = "Wave : " + Wave;
-        RemainMonster.text = "" + RemainsMonster + " Monsters Remain";
+        if (DoorOpen == true)
+        {
+            RemainMonster.text = "A door is opened";
+        }
+        else
+        {
+            RemainMonster.text = "" + RemainsMonster + " Monsters Remain";
+
+        }
     }
 
     public GameObject Runners, DemonHead, RingDemon, EarthGolemG, IceDemonG;

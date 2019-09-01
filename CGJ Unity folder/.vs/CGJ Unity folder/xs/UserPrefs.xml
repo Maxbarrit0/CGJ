@@ -1,18 +1,32 @@
 ﻿<Properties StartupConfiguration="{D5D6194B-83AE-2A18-31DD-AAC0E102E505}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CoffeMachine.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Door.cs">
     <Files>
       <File FileName="Assets/Scripts/SelectSpell.cs" Line="32" Column="58" />
-      <File FileName="Assets/Scripts/Main.cs" Line="205" Column="31" />
-      <File FileName="Assets/Scripts/CoffeMachine.cs" Line="45" Column="48" />
+      <File FileName="Assets/Scripts/Main.cs" Line="231" Column="51" />
+      <File FileName="Assets/Scripts/CoffeMachine.cs" Line="42" Column="50" />
       <File FileName="Assets/Scripts/SpellDeliverMove.cs" />
       <File FileName="Assets/Scripts/IceSpell.cs" />
       <File FileName="Assets/Scripts/RestartButton.cs" />
       <File FileName="Assets/Scripts/Boss.cs" />
+      <File FileName="Assets/Scripts/Door.cs" Line="32" Column="42" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="CGJ Unity folder" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Door.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="acb2bb71-4107-4852-9336-7fefdc356d17" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="2619c910-2a42-4069-80a2-da1006385a58" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
