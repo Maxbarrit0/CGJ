@@ -42,14 +42,14 @@ public class Main : MonoBehaviour
             Cadre_Ice.anchoredPosition = new Vector3(0, 53.04004f, 0);
             Icon_Ice.anchoredPosition = new Vector3(0, 58.47412f, 0);
         }
-        else if (EarthSpellForm.ActifEarthSpell == false && IceSpell.Activation_IceSpell == true)
+        else if (EarthSpellForm.ActifEarthSpell == true && IceSpell.Activation_IceSpell == true)
         {
             Button_Ice.anchoredPosition = new Vector3(-18, 55.3999f, 0);
             Cadre_Ice.anchoredPosition = new Vector3(-18, 53.04004f, 0);
             Icon_Ice.anchoredPosition = new Vector3(-18, 58.47412f, 0);
-            Button_Earth.anchoredPosition = new Vector3(-18, 55.3999f, 0);
-            Cadre_Earth.anchoredPosition = new Vector3(-18, 53.04004f, 0);
-            Icon_Earth.anchoredPosition = new Vector3(-18, 58.47412f, 0);
+            Button_Earth.anchoredPosition = new Vector3(18, 55.3999f, 0);
+            Cadre_Earth.anchoredPosition = new Vector3(18, 53.04004f, 0);
+            Icon_Earth.anchoredPosition = new Vector3(18, 58.47412f, 0);
         }
         if (Wave >= 20 && Stop == false)
         {
@@ -110,14 +110,27 @@ public class Main : MonoBehaviour
                 EtapeTutoriel++;
             }
         }
-
-        if (Player.transform.position.x < 9 && (EarthSpellForm.ActifEarthSpell == true || IceSpell.Activation_IceSpell == true) && Wave == 5)
+        if (Wave == 5)
         {
-            Wave++;
-            RemainsMonster = 5 + Wave;
-            RemainsMonsterToSummon = 5 + Wave;
-            DoorOpen = false;
-            cooldownOfRespawn = 1;
+            if (Player.transform.position.x < 9 && (EarthSpellForm.ActifEarthSpell == true || IceSpell.Activation_IceSpell == true))
+            {
+                Wave++;
+                RemainsMonster = 5 + Wave;
+                RemainsMonsterToSummon = 5 + Wave;
+                DoorOpen = false;
+                cooldownOfRespawn = 1;
+            }
+        }
+        else if (Wave == 10)
+        {
+            if (Player.transform.position.x < 9 && EarthSpellForm.ActifEarthSpell == true && IceSpell.Activation_IceSpell == true)
+            {
+                Wave++;
+                RemainsMonster = 5 + Wave;
+                RemainsMonsterToSummon = 5 + Wave;
+                DoorOpen = false;
+                cooldownOfRespawn = 1;
+            }
         }
         if (EarthSpellForm.ActifEarthSpell == true)
         {
@@ -196,8 +209,8 @@ public class Main : MonoBehaviour
                 ScriptDegat.Positif = false;
                 Boss.Life += 2;
                 Degat_Text.text = "+ 2 !!!";
-                RemainsMonster = 5 + Wave;
-                RemainsMonsterToSummon = 5 + Wave;
+                RemainsMonster = 2 + Wave;
+                RemainsMonsterToSummon = 2 + Wave;
             }
         }
 

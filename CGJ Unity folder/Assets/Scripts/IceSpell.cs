@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IceSpell : MonoBehaviour
 {
-    public static bool Activation_IceSpell, IceSpellUse;
+    public static bool Activation_IceSpell = false, IceSpellUse;
     public GameObject Stalagmite, Player;
 
     private void Update()

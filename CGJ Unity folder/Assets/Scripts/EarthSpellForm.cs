@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EarthSpellForm : MonoBehaviour
 {
-    public static bool ActifEarthSpell;
+    public static bool ActifEarthSpell = false;
     public bool Destroy;
     public bool Actif = true;
     Animator Anim;
